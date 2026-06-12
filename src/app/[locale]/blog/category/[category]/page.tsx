@@ -8,8 +8,8 @@ import type { Locale } from '@/types'
 
 type Props = { params: Promise<{ locale: string; category: string }> }
 
-export async function generateStaticParams({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export async function generateStaticParams({ params }: { params: { locale: string } }) {
+  const { locale } = params
   return getAllCategories(locale as Locale).map((c) => ({ category: c.slug }))
 }
 

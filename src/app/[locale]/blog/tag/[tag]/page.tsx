@@ -7,8 +7,8 @@ import type { Locale } from '@/types'
 
 type Props = { params: Promise<{ locale: string; tag: string }> }
 
-export async function generateStaticParams({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params
+export async function generateStaticParams({ params }: { params: { locale: string } }) {
+  const { locale } = params
   return getAllTags(locale as Locale).map((t) => ({ tag: t.slug }))
 }
 
