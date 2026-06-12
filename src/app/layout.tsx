@@ -5,10 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://drmaryambahrian.ir'),
 }
 
+// Root layout passes children directly — [locale]/layout.tsx owns <html> and <body>
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
-    </html>
-  )
+  return <>{children}</>
 }
