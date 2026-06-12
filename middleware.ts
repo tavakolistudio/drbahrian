@@ -4,21 +4,23 @@ const locales = ['fa', 'en'] as const
 const defaultLocale = 'fa'
 
 export default function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname
+  const { pathname } = request.nextUrl
 
-  // Skip if path already starts with a locale prefix
+  // Pass through if path already has a locale prefix
   const hasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   )
-
   if (hasLocale) return NextResponse.next()
 
-  // Rewrite to default locale (fa) — keeps URL clean (no redirect)
-  const url = request.nextUrl.clone()
-  url.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`
-  return NextResponse.rewrite(url)
+  // Rewrite to default locale — URL stays clean (no visible redirect)
+  const newPath = `/${defaultLocale}${pathname === '/' ? '' : pathname}`
+  return NextResponse.rewrite(new URL(newPath, request.url))
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  // Explicitly include root + all non-static paths
+  matcher: [
+    '/',
+    '/((?!api|_next|_vercel|.*\\..*).*)',
+  ],
 }
