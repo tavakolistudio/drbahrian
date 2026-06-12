@@ -46,7 +46,8 @@ const config: Config = {
         inter: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
-      typography: (theme: (arg: string) => string) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      typography: (theme: any) => ({
         DEFAULT: {
           css: {
             maxWidth: '70ch',

@@ -60,17 +60,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const { locale, slug } = await params
   const post = getPostBySlug(slug, locale as Locale)
-  if (!post || post.draft) notFound()
+  if (!post) notFound()
+  if (post.draft) notFound()
 
   const t = await getTranslations({ locale })
   const l = locale as Locale
   const prefix = locale === 'en' ? '/en' : ''
   const toc = extractToc(post.content)
 
-  const relatedPosts = getRelatedPosts(
-    { ...post, content: undefined as unknown as string },
-    l
-  )
+  const { content: _c, ...postMeta } = post
+  const relatedPosts = getRelatedPosts(postMeta, l)
 
   const breadcrumbs = [
     { label: t('breadcrumb.home'), href: `${prefix}/` },

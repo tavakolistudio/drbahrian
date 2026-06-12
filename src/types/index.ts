@@ -8,7 +8,7 @@ export interface PostFrontmatter {
   publishedAt: string
   updatedAt?: string
   category: string
-  tags: string[]
+  tags?: string[]
   coverImage?: string
   metaTitle?: string
   metaDescription?: string
