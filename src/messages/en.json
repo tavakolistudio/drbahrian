@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Articles",
+    "teaching": "Teaching & Research",
+    "books": "Books",
+    "contact": "Contact",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "home": {
+    "hero": {
+      "name": "Dr. Maryam Bahrian",
+      "subtitle": "Clinical Psychologist | Psychotherapist | Author | University Lecturer | Researcher",
+      "intro": "Exploring the mind, language, culture, and the human psyche through the lens of psychoanalysis, clinical research, and therapeutic practice.",
+      "ctaPrimary": "Read Articles",
+      "ctaSecondary": "Get in Touch"
+    },
+    "latestPosts": {
+      "title": "Latest Articles",
+      "viewAll": "View All Articles"
+    },
+    "categories": {
+      "title": "Writing Areas"
+    },
+    "about": {
+      "label": "About Dr. Bahrian",
+      "title": "Research, Therapy, and Thought",
+      "text": "Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, author, and university lecturer. Her research lies at the intersection of psychoanalysis, culture, language, and politics. The writings on this website open a window into her clinical reflections, cultural analyses, and psychoanalytic essays.",
+      "cta": "Learn More"
+    },
+    "credentials": {
+      "title": "Professional Credentials",
+      "items": [
+        "PhD in Clinical and General Psychology",
+        "University Lecturer in Psychology",
+        "Author and Researcher in Psychology",
+        "Clinical Psychotherapist with extensive experience"
+      ]
+    }
+  },
+  "about": {
+    "title": "About Dr. Maryam Bahrian",
+    "metaDescription": "Learn about Dr. Maryam Bahrian, clinical psychologist, psychotherapist, author, and university lecturer",
+    "intro": "Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, author, university lecturer, and researcher in the field of psychology.",
+    "sections": {
+      "education": "Education",
+      "clinical": "Clinical Practice",
+      "teaching": "University Teaching",
+      "research": "Research Areas",
+      "writing": "Writing Areas",
+      "contact": "Contact Information",
+      "license": "License Number"
+    }
+  },
+  "blog": {
+    "title": "Articles",
+    "metaDescription": "Articles on psychoanalysis, clinical psychology, and psychological essays by Dr. Maryam Bahrian",
+    "search": "Search articles...",
+    "searchResults": "Search results for: {query}",
+    "noResults": "No articles found",
+    "allCategories": "All Categories",
+    "readMore": "Read More",
+    "readingTime": "{time} min read",
+    "publishedAt": "Published on",
+    "updatedAt": "Updated",
+    "by": "By",
+    "tags": "Tags",
+    "category": "Category",
+    "relatedPosts": "Related Articles",
+    "share": "Share",
+    "toc": "Table of Contents",
+    "disclaimer": "The content on this website is for educational, analytical, and awareness purposes only and is not a substitute for professional diagnosis, treatment, or consultation.",
+    "author": "Dr. Maryam Bahrian",
+    "authorTitle": "Clinical Psychologist, Psychotherapist & Researcher",
+    "categories": {
+      "psychoanalysis": "Psychoanalysis",
+      "psychoanalysis-and-literature": "Psychoanalysis & Literature",
+      "psychoanalysis-and-culture": "Psychoanalysis & Culture",
+      "psychoanalysis-and-politics": "Psychoanalysis & Politics",
+      "body-desire-loss": "Body, Desire & Loss",
+      "therapist-notes": "Therapist's Notes",
+      "film-book-review": "Film & Book Review",
+      "psychology-research": "Psychology Research",
+      "psychological-essays": "Psychological Essays"
+    },
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page"
+    }
+  },
+  "teaching": {
+    "title": "Teaching & Research",
+    "metaDescription": "Academic teaching and research by Dr. Maryam Bahrian in the field of psychology",
+    "teaching": "University Teaching",
+    "research": "Research",
+    "courses": "Courses Taught",
+    "publications": "Academic Publications"
+  },
+  "books": {
+    "title": "Books & Writings",
+    "metaDescription": "Books and written works by Dr. Maryam Bahrian",
+    "published": "Published",
+    "upcoming": "Upcoming"
+  },
+  "contact": {
+    "title": "Contact",
+    "metaDescription": "Contact Dr. Maryam Bahrian - Clinical Psychologist",
+    "intro": "For communication, academic collaboration, session requests, or messages, please use the following channels.",
+    "email": "Email",
+    "telegram": "Telegram",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Your message has been sent successfully.",
+      "error": "Error sending message. Please try again.",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Your email",
+      "subjectPlaceholder": "Message subject",
+      "messagePlaceholder": "Your message..."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Designed with care and respect",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info"
+  },
+  "breadcrumb": {
+    "home": "Home"
+  },
+  "meta": {
+    "siteName": "Dr. Maryam Bahrian",
+    "defaultTitle": "Dr. Maryam Bahrian | Clinical Psychologist",
+    "defaultDescription": "Official website of Dr. Maryam Bahrian, clinical psychologist, psychotherapist, author, and university lecturer"
+  },
+  "lang": {
+    "switch": "فارسی",
+    "current": "English"
+  }
+}
