@@ -15,23 +15,23 @@ interface ButtonProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:opacity-50 disabled:cursor-not-allowed'
+  'inline-flex items-center justify-center gap-2 font-semibold uppercase tracking-[0.05em] transition-all duration-200 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:opacity-40 disabled:cursor-not-allowed'
 
 const variants = {
   primary:
-    'bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] rounded-sm',
+    'bg-[#8052ff] text-white hover:bg-[#6b3fe0]',
   secondary:
-    'bg-[var(--accent-light)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white rounded-sm',
+    'border border-[#ffb829] text-[#ffb829] hover:bg-[#ffb829]/10',
   ghost:
-    'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)] rounded-sm',
+    'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/5',
   outline:
-    'border border-[var(--border-dark)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)] rounded-sm',
+    'border border-[var(--border-dark)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-2.5 text-sm',
-  lg: 'px-8 py-3 text-base',
+  sm: 'px-4 py-2 text-[11px]',
+  md: 'px-5 py-2.5 text-xs',
+  lg: 'px-6 py-3 text-xs',
 }
 
 export function Button({
