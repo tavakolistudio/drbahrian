@@ -11,7 +11,7 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ categories, currentCategory, locale }: CategoryFilterProps) {
   const t = useTranslations('blog')
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   return (
     <div className="flex flex-wrap gap-2">

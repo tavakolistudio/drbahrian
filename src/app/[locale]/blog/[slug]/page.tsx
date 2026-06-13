@@ -65,7 +65,7 @@ export default async function PostPage({ params }: Props) {
 
   const t = await getTranslations({ locale })
   const l = locale as Locale
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const toc = extractToc(post.content)
 
   const { content: _c, ...postMeta } = post

@@ -10,10 +10,10 @@ interface LatestPostsProps {
 
 export function LatestPosts({ posts, locale }: LatestPostsProps) {
   const t = useTranslations('home.latestPosts')
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   return (
-    <section className="py-20 bg-[#060606]">
+    <section className="py-20 bg-black">
       <div className="site-container">
         {/* Section header */}
         <div className="flex items-center justify-between mb-12">

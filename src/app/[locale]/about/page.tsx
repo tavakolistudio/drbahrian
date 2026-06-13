@@ -22,7 +22,7 @@ export default async function AboutPage({ params }: Props) {
   const isRTL = locale === 'fa'
 
   const breadcrumbs = [
-    { label: t('breadcrumb.home'), href: locale === 'en' ? '/en/' : '/' },
+    { label: t('breadcrumb.home'), href: `/${locale}/` },
     { label: t('about.title') },
   ]
 
@@ -85,7 +85,14 @@ Her writings stand at the intersection of psychoanalysis, culture, language, lit
       <Breadcrumb items={breadcrumbs} locale={locale} className="mb-8" />
 
       <div className="max-w-3xl">
-        <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6">
+        <h1
+          className="text-[var(--text-primary)] mb-6 leading-tight"
+          style={{
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontWeight: isRTL ? 300 : 200,
+            letterSpacing: isRTL ? '-0.01em' : '-0.03em',
+          }}
+        >
           {t('about.title')}
         </h1>
 

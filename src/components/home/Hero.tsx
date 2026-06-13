@@ -5,7 +5,7 @@ import { ParticleField } from '@/components/ui/ParticleField'
 
 export function Hero({ locale }: { locale: Locale }) {
   const t = useTranslations('home.hero')
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const isRTL = locale === 'fa'
 
   return (

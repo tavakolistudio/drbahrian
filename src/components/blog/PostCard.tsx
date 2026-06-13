@@ -11,7 +11,7 @@ interface PostCardProps {
 }
 
 export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const href = `${prefix}/blog/${post.slug}`
   const isRTL = locale === 'fa'
   const readLabel = isRTL ? `${post.readingTimeMinutes} دقیقه` : `${post.readingTimeMinutes} min`
@@ -37,7 +37,7 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
   }
 
   return (
-    <article className="group flex flex-col gap-3 p-6 bg-[#060606] hover:bg-[#8052ff]/[0.04] transition-colors duration-200">
+    <article className="group flex flex-col gap-3 p-6 bg-black hover:bg-[#8052ff]/[0.04] transition-colors duration-200">
       {/* Category */}
       <Badge href={`${prefix}/blog/category/${post.category}`} variant="category">
         {post.category}

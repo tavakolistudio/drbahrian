@@ -4,11 +4,11 @@ import type { Locale } from '@/types'
 
 export function AboutTeaser({ locale }: { locale: Locale }) {
   const t = useTranslations('home.about')
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const isRTL = locale === 'fa'
 
   return (
-    <section className="py-20 bg-[#060606]">
+    <section className="py-20 bg-black">
       <div className="site-container">
         <div className="flex items-center gap-4 mb-12">
           <div className="w-6 h-px bg-[#15846e]" />

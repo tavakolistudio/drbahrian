@@ -23,7 +23,7 @@ export default async function TagPage({ params }: Props) {
   const decoded = decodeURIComponent(tag)
   const t = await getTranslations({ locale })
   const l = locale as Locale
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   const posts = getPostsByTag(decoded, l)
 

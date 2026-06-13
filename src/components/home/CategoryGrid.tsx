@@ -26,7 +26,7 @@ const EN_CATEGORIES = [
 
 export function CategoryGrid({ locale }: { locale: Locale }) {
   const t = useTranslations('home.categories')
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
 
   return (

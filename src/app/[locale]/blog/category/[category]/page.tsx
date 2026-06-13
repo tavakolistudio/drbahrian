@@ -27,7 +27,7 @@ export default async function CategoryPage({ params }: Props) {
   const decoded = decodeURIComponent(category)
   const t = await getTranslations({ locale })
   const l = locale as Locale
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   const posts = getPostsByCategory(decoded, l)
 

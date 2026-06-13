@@ -15,7 +15,7 @@ export default async function TeachingPage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale })
   const isRTL = locale === 'fa'
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   const breadcrumbs = [
     { label: t('breadcrumb.home'), href: `${prefix}/` },
