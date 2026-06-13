@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import Image from 'next/image'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { PersonSchema } from './schema'
 import type { Locale } from '@/types'
@@ -85,20 +86,36 @@ Her writings stand at the intersection of psychoanalysis, culture, language, lit
       <Breadcrumb items={breadcrumbs} locale={locale} className="mb-8" />
 
       <div className="max-w-3xl">
-        <h1
-          className="text-[var(--text-primary)] mb-6 leading-tight"
-          style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
-            fontWeight: isRTL ? 300 : 200,
-            letterSpacing: isRTL ? '-0.01em' : '-0.03em',
-          }}
-        >
-          {t('about.title')}
-        </h1>
-
-        <p className="text-base text-[var(--text-secondary)] leading-loose mb-12 whitespace-pre-line">
-          {sections.intro}
-        </p>
+        {/* Header with photo */}
+        <div className="flex flex-col sm:flex-row items-start gap-8 mb-12">
+          <div className="flex-shrink-0">
+            <div className="relative w-40 h-52 sm:w-48 sm:h-60 overflow-hidden rounded-sm shadow-md border border-[var(--border)]">
+              <Image
+                src="/doctor.jpg"
+                alt={isRTL ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
+                fill
+                className="object-cover object-top grayscale"
+                sizes="(max-width: 640px) 160px, 192px"
+                priority
+              />
+            </div>
+          </div>
+          <div className="flex-1">
+            <h1
+              className="text-[var(--text-primary)] mb-4 leading-tight"
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontWeight: isRTL ? 300 : 200,
+                letterSpacing: isRTL ? '-0.01em' : '-0.03em',
+              }}
+            >
+              {t('about.title')}
+            </h1>
+            <p className="text-base text-[var(--text-secondary)] leading-loose whitespace-pre-line">
+              {sections.intro}
+            </p>
+          </div>
+        </div>
 
         {/* Education */}
         <section className="mb-10">
