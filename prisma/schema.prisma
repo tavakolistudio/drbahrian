@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+}
+
+enum SlotStatus {
+  LOCKED
+  AVAILABLE
+  PENDING
+  CONFIRMED
+  REJECTED
+  CANCELLED
+  EXPIRED
+}
+
+enum AppointmentMode {
+  ONLINE
+  IN_PERSON
+  BOTH
+}
+
+enum ContactMethod {
+  WHATSAPP
+  TELEGRAM
+  BALE
+}
+
+enum ClientType {
+  NEW
+  RETURNING
+}
+
+enum RequestStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  CANCELLED
+  EXPIRED
+}
+
+enum ActionType {
+  APPROVE
+  REJECT
+  CANCEL
+  CREATE_SLOT
+  LOCK_SLOT
+  UNLOCK_SLOT
+  UPDATE_SETTINGS
+  ADD_NOTE
+  EXPIRE
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  slots   AvailabilitySlot[]
+  actions AdminActionLog[]
+}
+
+model AvailabilitySlot {
+  id               String          @id @default(cuid())
+  startTimeUtc     DateTime
+  endTimeUtc       DateTime
+  doctorTimezone   String          @default("Asia/Tehran")
+  appointmentMode  AppointmentMode @default(BOTH)
+  status           SlotStatus      @default(AVAILABLE)
+  createdByAdminId String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  admin   User?               @relation(fields: [createdByAdminId], references: [id])
+  request AppointmentRequest?
+
+  @@index([startTimeUtc])
+  @@index([status])
+  @@index([startTimeUtc, status])
+}
+
+model AppointmentRequest {
+  id                     String          @id @default(cuid())
+  slotId                 String          @unique
+  fullName               String
+  country                String
+  city                   String
+  timezone               String
+  whatsapp               String
+  telegram               String?
+  bale                   String?
+  preferredContactMethod ContactMethod
+  appointmentMode        AppointmentMode
+  clientType             ClientType
+  topic                  String
+  note                   String?
+  status                 RequestStatus   @default(PENDING)
+  adminNote              String?
+  requestedAt            DateTime        @default(now())
+  confirmedAt            DateTime?
+  rejectedAt             DateTime?
+  cancelledAt            DateTime?
+  expiresAt              DateTime
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+
+  slot AvailabilitySlot @relation(fields: [slotId], references: [id])
+
+  @@index([status])
+  @@index([requestedAt])
+  @@index([whatsapp])
+}
+
+model AdminActionLog {
+  id         String     @id @default(cuid())
+  adminId    String
+  actionType ActionType
+  targetType String
+  targetId   String
+  details    Json?
+  createdAt  DateTime   @default(now())
+
+  admin User @relation(fields: [adminId], references: [id])
+
+  @@index([createdAt])
+}
+
+model Settings {
+  id                         String   @id @default(cuid())
+  doctorTimezone             String   @default("Asia/Tehran")
+  defaultSlotDurationMinutes Int      @default(50)
+  defaultBreakMinutes        Int      @default(10)
+  pendingExpirationHours     Int      @default(24)
+  contactPriority            String   @default("WHATSAPP,TELEGRAM,BALE")
+  createdAt                  DateTime @default(now())
+  updatedAt                  DateTime @updatedAt
+}
