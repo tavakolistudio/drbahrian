@@ -1,7 +1,10 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-const PALETTE = ['#2C4A3E', '#2C4A3E', '#2C4A3E', '#3d6b5a', '#8052ff', '#15846e', '#1e3429', '#5a3a8a']
+const PALETTE = [
+  '#1e3429', '#2C4A3E', '#2C4A3E', '#2C4A3E', '#3d6b5a',
+  '#15846e', '#8052ff', '#6040cc', '#5a3a8a',
+]
 type Shape = 'circle' | 'triangle' | 'diamond' | 'square'
 const SHAPES: Shape[] = ['circle', 'triangle', 'diamond', 'square']
 
@@ -11,59 +14,64 @@ interface Particle {
   shape: Shape; opacity: number; phase: number
 }
 
-// Mathematical brain density field — lateral (side) view
-// Returns 0–1+; higher = denser brain tissue region
-function brainDensity(nx: number, ny: number): number {
-  // Main cerebrum — large dominant oval
-  const main = 1 - (nx * nx * 0.88 + ny * ny * 1.35)
-  // Frontal lobe — forward bulge
-  const frontal = 0.82 - (Math.pow(nx + 0.73, 2) * 1.1 + Math.pow(ny + 0.02, 2) * 2.0)
-  // Temporal lobe — extends downward from center
-  const temporal = 0.72 - (Math.pow(nx + 0.08, 2) * 1.4 + Math.pow(ny - 0.68, 2) * 3.2)
-  // Cerebellum — distinct lower-back lobe
-  const cerebellum = 0.72 - (Math.pow(nx - 0.64, 2) * 1.9 + Math.pow(ny - 0.58, 2) * 2.8)
-  // Parietal — top extension
-  const parietal = 0.48 - (Math.pow(nx - 0.22, 2) * 1.7 + Math.pow(ny + 0.62, 2) * 3.8)
-
+// Lateral brain view density (positive snx = front/frontal, negative snx = back/occipital)
+// ny > 0 = bottom, ny < 0 = top
+function brainDensity(snx: number, ny: number): number {
+  const g = (cx: number, cy: number, sx: number, sy: number, w: number) => {
+    const d = (snx - cx) ** 2 / (sx * sx) + (ny - cy) ** 2 / (sy * sy)
+    return d < 1 ? w * (1 - d) : 0
+  }
   return (
-    Math.max(0, main) * 1.0 +
-    Math.max(0, frontal) * 0.9 +
-    Math.max(0, temporal) * 0.8 +
-    Math.max(0, cerebellum) * 0.8 +
-    Math.max(0, parietal) * 0.6
+    g(0.00,  -0.02, 0.80, 0.62, 1.00) +  // main cerebrum
+    g(0.45,  -0.08, 0.42, 0.54, 0.82) +  // frontal lobe (positive = front)
+    g(-0.40,  0.10, 0.38, 0.52, 0.72) +  // occipital (negative = back)
+    g(0.28,   0.56, 0.46, 0.30, 0.78) +  // temporal (below frontal)
+    g(-0.34,  0.84, 0.40, 0.28, 0.92)    // cerebellum (back-bottom, distinct)
   )
 }
 
-function buildParticles(w: number, h: number, rtl: boolean, count = 1400): Particle[] {
-  const bCx = rtl ? 0.26 : 0.72    // brain center x
-  const bCy = 0.46                   // brain center y
-  const bW = Math.min(w * 0.23, 240) // half-width in px
-  const bH = Math.min(h * 0.30, 230) // half-height in px
+function buildParticles(w: number, h: number, rtl: boolean): Particle[] {
+  const COUNT = 2800
+  // Brain position: right side for LTR, left side for RTL
+  const bCx = rtl ? 0.24 : 0.76
+  const bCy = 0.44
+  // Smaller bounding box = higher particle density = more visible shape
+  const bW = Math.min(w * 0.195, 190)
+  const bH = Math.min(h * 0.27, 200)
 
   const out: Particle[] = []
   let tries = 0
 
-  while (out.length < count && tries < count * 14) {
+  while (out.length < COUNT && tries < COUNT * 22) {
     tries++
-    const nx = Math.random() * 2.9 - 1.45
-    const ny = Math.random() * 2.5 - 1.25
-    // Mirror brain for RTL
+    const nx = Math.random() * 2.8 - 1.4
+    const ny = Math.random() * 2.6 - 1.3
+    // Mirror the density field for RTL so the frontal lobe faces the text
     const snx = rtl ? -nx : nx
     const d = brainDensity(snx, ny)
 
-    if (d > 0 && Math.random() < d * 0.88) {
+    if (d > 0.04 && Math.random() < d * 0.78) {
       const x = bCx * w + nx * bW
       const y = bCy * h + ny * bH
-      // Edge particles (gyri) are more opaque and slightly larger
-      const isEdge = d < 0.28
+      // Boundary particles (outline/gyri) are larger and more opaque
+      const isBoundary = d < 0.24
+      // Cerebellum at back-bottom: use purple tones for visual distinction
+      const isCerebellum = ny > 0.60 && snx < -0.08
+
       out.push({
         x, y, ox: x, oy: y,
-        size: isEdge ? 2.2 + Math.random() * 2.8 : 1.5 + Math.random() * 2.2,
-        color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
+        size: isBoundary
+          ? 3.2 + Math.random() * 3.8   // outline: 3.2–7.0px
+          : 2.0 + Math.random() * 2.8,   // interior: 2.0–4.8px
+        color: isCerebellum
+          ? ['#8052ff', '#6040cc', '#5a3a8a'][Math.floor(Math.random() * 3)]
+          : PALETTE[Math.floor(Math.random() * PALETTE.length)],
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
-        opacity: isEdge ? 0.50 + Math.random() * 0.45 : 0.22 + Math.random() * 0.45,
+        opacity: isBoundary
+          ? 0.72 + Math.random() * 0.28   // boundary: 0.72–1.00
+          : 0.38 + Math.random() * 0.37,  // interior: 0.38–0.75
         phase: Math.random() * Math.PI * 2,
       })
     }
@@ -124,17 +132,17 @@ export function ParticleField({ className, rtl = false }: { className?: string; 
       frame++
       ctx.clearRect(0, 0, w, h)
 
-      // Neural-like connections every 3 frames (nearby particles in array = same region)
-      if (frame % 3 === 0) {
-        ctx.lineWidth = 0.6
-        for (let i = 0; i < particles.length; i += 4) {
-          for (let j = i + 1; j < Math.min(i + 22, particles.length); j++) {
+      // Neural connection lines — every 2 frames for smoother appearance
+      if (frame % 2 === 0) {
+        ctx.lineWidth = 0.7
+        for (let i = 0; i < particles.length; i += 3) {
+          for (let j = i + 1; j < Math.min(i + 20, particles.length); j++) {
             const dx = particles[i].x - particles[j].x
             const dy = particles[i].y - particles[j].y
             const d2 = dx * dx + dy * dy
-            if (d2 < 900) {
+            if (d2 < 1600) {  // 40px connection range
               ctx.strokeStyle = particles[i].color
-              ctx.globalAlpha = (1 - Math.sqrt(d2) / 30) * 0.12
+              ctx.globalAlpha = (1 - Math.sqrt(d2) / 40) * 0.20
               ctx.beginPath()
               ctx.moveTo(particles[i].x, particles[i].y)
               ctx.lineTo(particles[j].x, particles[j].y)
@@ -146,19 +154,19 @@ export function ParticleField({ className, rtl = false }: { className?: string; 
       }
 
       for (const p of particles) {
-        // Gentle gravity back to original brain position
+        // Spring force back to original brain position
         const dx = p.ox - p.x
         const dy = p.oy - p.y
         const d = Math.sqrt(dx * dx + dy * dy)
-        if (d > 15) {
-          p.vx += dx * 0.0009
-          p.vy += dy * 0.0009
+        if (d > 10) {
+          p.vx += dx * 0.001
+          p.vy += dy * 0.001
         }
         // Organic breathing motion
-        p.vx += Math.sin(frame * 0.006 + p.phase) * 0.003
-        p.vy += Math.cos(frame * 0.005 + p.phase * 0.8) * 0.003
-        p.vx *= 0.990
-        p.vy *= 0.990
+        p.vx += Math.sin(frame * 0.006 + p.phase) * 0.005
+        p.vy += Math.cos(frame * 0.005 + p.phase * 0.8) * 0.005
+        p.vx *= 0.988
+        p.vy *= 0.988
         p.x += p.vx
         p.y += p.vy
         drawShape(ctx, p)
