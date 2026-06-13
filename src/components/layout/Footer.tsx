@@ -5,7 +5,7 @@ import { Mail, Send } from 'lucide-react'
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = useTranslations()
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
   const year = new Date().getFullYear()
 
   const links = [

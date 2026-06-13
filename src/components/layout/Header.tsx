@@ -29,7 +29,7 @@ export function Header() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  const prefix = locale === 'en' ? '/en' : ''
+  const prefix = `/${locale}`
 
   const links = [
     { href: `${prefix}/`, label: t('home') },
@@ -86,6 +86,17 @@ export function Header() {
                 }
               />
             ))}
+            <Link
+              href="/reserve"
+              className={cn(
+                'text-sm tracking-[0.021em] transition-colors py-1',
+                pathname.startsWith('/reserve')
+                  ? 'text-[#8052ff]'
+                  : 'text-[#8052ff]/70 hover:text-[#8052ff]'
+              )}
+            >
+              {t('reserve')}
+            </Link>
           </nav>
 
           {/* Right: language switcher + CTA */}
@@ -113,7 +124,7 @@ export function Header() {
       {open && (
         <div className="md:hidden border-t border-white/[0.06] bg-black/95 backdrop-blur-md">
           <nav className="site-container py-4 flex flex-col gap-1">
-            {[...links, { href: `${prefix}/contact`, label: t('contact') }].map((l) => (
+            {[...links, { href: '/reserve', label: t('reserve') }, { href: `${prefix}/contact`, label: t('contact') }].map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
