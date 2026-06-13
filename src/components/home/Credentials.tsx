@@ -8,25 +8,35 @@ const iconColors = ['#8052ff', '#ffb829', '#15846e', '#8052ff']
 export function Credentials({ locale }: { locale: Locale }) {
   const t = useTranslations('home.credentials')
   const items = t.raw('items') as string[]
+  const isRTL = locale === 'fa'
 
   return (
-    <section className="py-16 border-t border-white/[0.06]">
+    <section className="py-20 bg-black">
       <div className="site-container">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-8 text-center">
-          {t('title')}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="flex items-center gap-4 mb-12">
+          <div className="w-6 h-px bg-[#8052ff]" />
+          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9a9a9a]">
+            {t('title')}
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08]">
           {items.map((item, i) => {
             const Icon = icons[i % icons.length]
             return (
-              <div
-                key={i}
-                className="flex flex-col gap-4 p-6 border border-white/[0.08] hover:border-white/[0.16] transition-colors"
-              >
-                <div className="w-8 h-8 flex items-center justify-center">
-                  <Icon size={20} strokeWidth={1.5} style={{ color: iconColors[i % iconColors.length] }} />
+              <div key={i} className="flex flex-col gap-4 p-6 bg-black">
+                <div className="w-9 h-9 flex items-center justify-center rounded-full border border-white/[0.1]">
+                  <Icon size={18} strokeWidth={1.5} style={{ color: iconColors[i % iconColors.length] }} />
                 </div>
-                <p className="text-sm text-[#bdbdbd] leading-relaxed tracking-[0.025em]">{item}</p>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    color: '#bdbdbd',
+                    fontWeight: isRTL ? 400 : 300,
+                    lineHeight: isRTL ? '2' : '1.7',
+                  }}
+                >
+                  {item}
+                </p>
               </div>
             )
           })}

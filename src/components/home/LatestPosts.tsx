@@ -13,18 +13,22 @@ export function LatestPosts({ posts, locale }: LatestPostsProps) {
   const prefix = locale === 'en' ? '/en' : ''
 
   return (
-    <section className="py-16 border-t border-white/[0.06]">
+    <section className="py-20 bg-[#060606]">
       <div className="site-container">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a]">
-            {t('title')}
-          </h2>
+        {/* Section header */}
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center gap-4">
+            <div className="w-6 h-px bg-[#8052ff]" />
+            <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9a9a9a]">
+              {t('title')}
+            </h2>
+          </div>
           <Button href={`${prefix}/blog`} variant="ghost" size="sm">
             {t('viewAll')} ←
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.06]">
           {posts.map((post, i) => (
             <PostCard
               key={post.slug}
