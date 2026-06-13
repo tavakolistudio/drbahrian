@@ -5,7 +5,10 @@ import { PostCard } from '@/components/blog/PostCard'
 import { CategoryFilter } from '@/components/blog/CategoryFilter'
 import { SearchBar } from '@/components/blog/SearchBar'
 import { getAllPosts, getAllCategories, searchPosts } from '@/lib/posts'
-import type { Locale } from '@/types'
+import { getAllDbPosts, getAllDbCategories, searchDbPosts } from '@/lib/posts-db'
+import type { Locale, PostMeta } from '@/types'
+
+export const revalidate = 60
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -23,12 +26,27 @@ export default async function BlogPage({ params, searchParams }: Props) {
   const { q } = await searchParams
   const t = await getTranslations({ locale })
   const l = locale as Locale
+  const prefix = `/${locale}`
 
-  const allPosts = q ? searchPosts(q, l) : getAllPosts(l)
-  const categories = getAllCategories(l)
+  // Merge DB + file posts (DB takes priority)
+  const [dbPosts, dbCategories] = await Promise.all([
+    q ? searchDbPosts(q, l) : getAllDbPosts(l),
+    getAllDbCategories(l),
+  ])
+  const filePosts = q ? searchPosts(q, l) : getAllPosts(l)
+  const fileCategories = getAllCategories(l)
+
+  const dbSlugs = new Set(dbPosts.map(p => p.slug))
+  const allPosts: PostMeta[] = [...dbPosts, ...filePosts.filter(p => !dbSlugs.has(p.slug))]
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+  // Merge categories
+  const catMap = new Map<string, number>()
+  for (const c of [...fileCategories, ...dbCategories]) catMap.set(c.slug, (catMap.get(c.slug) ?? 0) + c.count)
+  const categories = Array.from(catMap.entries()).map(([slug, count]) => ({ slug, count })).sort((a, b) => b.count - a.count)
 
   const breadcrumbs = [
-    { label: t('breadcrumb.home'), href: locale === 'en' ? '/en/' : '/' },
+    { label: t('breadcrumb.home'), href: `${prefix}/` },
     { label: t('blog.title') },
   ]
 

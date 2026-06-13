@@ -13,6 +13,7 @@ const vazirmatn = Vazirmatn({
 
 const NAV = [
   { href: '/admin', label: 'داشبورد', icon: '◈', exact: true },
+  { href: '/admin/posts', label: 'مقالات', icon: '✎', exact: false },
   { href: '/admin/appointments/pending', label: 'در انتظار بررسی', icon: '◷', exact: false },
   { href: '/admin/appointments', label: 'همه نوبت‌ها', icon: '☰', exact: true },
   { href: '/admin/calendar', label: 'تقویم', icon: '⊞', exact: false },

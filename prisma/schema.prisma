@@ -136,6 +136,34 @@ model AdminActionLog {
   @@index([createdAt])
 }
 
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Post {
+  id              String     @id @default(cuid())
+  slug            String
+  locale          String     @default("fa")
+  title           String
+  excerpt         String?    @db.Text
+  content         String     @db.Text
+  category        String?
+  tags            String[]
+  author          String     @default("دکتر مریم بهریان")
+  status          PostStatus @default(DRAFT)
+  publishedAt     DateTime?
+  metaTitle       String?
+  metaDescription String?    @db.Text
+  readingTimeMin  Int        @default(1)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@unique([slug, locale])
+  @@index([locale, status])
+  @@index([publishedAt])
+}
+
 model Settings {
   id                         String   @id @default(cuid())
   doctorTimezone             String   @default("Asia/Tehran")

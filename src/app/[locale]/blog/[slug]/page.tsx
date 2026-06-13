@@ -6,6 +6,10 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/posts'
+import { getDbPostBySlug, getDbRelatedPosts } from '@/lib/posts-db'
+
+export const revalidate = 60
+export const dynamicParams = true
 import { extractToc, formatDate } from '@/lib/utils'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { Badge } from '@/components/ui/Badge'
@@ -59,17 +63,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PostPage({ params }: Props) {
   const { locale, slug } = await params
-  const post = getPostBySlug(slug, locale as Locale)
+  const l = locale as Locale
+
+  // Try DB first, then file
+  const dbPost = await getDbPostBySlug(slug, l)
+  const post = dbPost ?? getPostBySlug(slug, l)
   if (!post) notFound()
   if (post.draft) notFound()
 
   const t = await getTranslations({ locale })
-  const l = locale as Locale
   const prefix = `/${locale}`
   const toc = extractToc(post.content)
 
   const { content: _c, ...postMeta } = post
-  const relatedPosts = getRelatedPosts(postMeta, l)
+  const [fileRelated, dbRelated] = await Promise.all([
+    Promise.resolve(getRelatedPosts(postMeta, l)),
+    getDbRelatedPosts(postMeta, l),
+  ])
+  const relatedSlugs = new Set(dbRelated.map(p => p.slug))
+  const relatedPosts = [...dbRelated, ...fileRelated.filter(p => !relatedSlugs.has(p.slug))].slice(0, 3)
 
   const breadcrumbs = [
     { label: t('breadcrumb.home'), href: `${prefix}/` },
