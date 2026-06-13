@@ -8,17 +8,17 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
   const isRTL = locale === 'fa'
 
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-[#F9F8F5]">
       <div className="site-container">
         <div className="flex items-center gap-4 mb-12">
-          <div className="w-6 h-px bg-[#15846e]" />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9a9a9a]">
+          <div className="w-6 h-px bg-[#2C4A3E]" />
+          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#6b6b6b]">
             {t('label')}
           </p>
         </div>
         <div className="max-w-2xl">
           <h2
-            className="text-white mb-6 leading-[1.15]"
+            className="text-[#1a1a1a] mb-6 leading-[1.15]"
             style={{
               fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
               fontWeight: isRTL ? 300 : 200,
@@ -30,7 +30,7 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
           <p
             className="leading-relaxed mb-8"
             style={{
-              color: '#bdbdbd',
+              color: '#4a4a4a',
               fontWeight: isRTL ? 400 : 300,
               lineHeight: isRTL ? '2.1' : '1.8',
             }}

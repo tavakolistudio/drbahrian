@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Dala palette */
+    /* Dala palette — kept for reference */
     --color-void: #000000;
     --color-bone: #ffffff;
     --color-ash: #bdbdbd;
@@ -13,32 +13,18 @@
     --color-amber-spark: #ffb829;
     --color-lichen: #15846e;
 
-    /* Semantic tokens — always void */
-    --bg: #000000;
-    --surface: #0a0a0a;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-dark: rgba(255, 255, 255, 0.18);
-    --text-primary: #ffffff;
-    --text-secondary: #bdbdbd;
-    --text-muted: #9a9a9a;
-    --accent: #8052ff;
-    --accent-hover: #6b3fe0;
-    --accent-light: rgba(128, 82, 255, 0.1);
-    --accent-text: #8052ff;
-  }
-
-  .dark {
-    --bg: #000000;
-    --surface: #0a0a0a;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-dark: rgba(255, 255, 255, 0.18);
-    --text-primary: #ffffff;
-    --text-secondary: #bdbdbd;
-    --text-muted: #9a9a9a;
-    --accent: #8052ff;
-    --accent-hover: #6b3fe0;
-    --accent-light: rgba(128, 82, 255, 0.1);
-    --accent-text: #8052ff;
+    /* Semantic tokens — warm/light (matches reservation section) */
+    --bg: #F0EEE9;
+    --surface: #F9F8F5;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-dark: rgba(0, 0, 0, 0.18);
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #6b6b6b;
+    --accent: #2C4A3E;
+    --accent-hover: #1e3429;
+    --accent-light: rgba(44, 74, 62, 0.1);
+    --accent-text: #2C4A3E;
   }
 
   * { box-sizing: border-box; }

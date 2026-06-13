@@ -9,19 +9,19 @@ export function Hero({ locale }: { locale: Locale }) {
   const isRTL = locale === 'fa'
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#F0EEE9]">
       {/* Full-bleed particle constellation */}
       <div className="absolute inset-0">
-        <ParticleField className="w-full h-full" />
+        <ParticleField className="w-full h-full" rtl={isRTL} />
       </div>
 
-      {/* Gradient: keeps text legible — deep on text side, transparent toward particles */}
+      {/* Gradient: fades text side to bg color, leaves particle side transparent */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: isRTL
-            ? 'linear-gradient(to left, rgba(0,0,0,0.92) 35%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.15) 100%)'
-            : 'linear-gradient(to right, rgba(0,0,0,0.92) 35%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.15) 100%)',
+            ? 'linear-gradient(to left, rgba(240,238,233,0.97) 30%, rgba(240,238,233,0.6) 60%, rgba(240,238,233,0) 100%)'
+            : 'linear-gradient(to right, rgba(240,238,233,0.97) 30%, rgba(240,238,233,0.6) 60%, rgba(240,238,233,0) 100%)',
         }}
       />
 
@@ -30,14 +30,14 @@ export function Hero({ locale }: { locale: Locale }) {
           {/* Eyebrow */}
           <p
             className="text-xs font-semibold uppercase tracking-[0.08em] mb-5"
-            style={{ color: '#8052ff' }}
+            style={{ color: '#2C4A3E' }}
           >
             {isRTL ? 'وب‌سایت رسمی' : 'Official Website'}
           </p>
 
-          {/* Display headline — weight 300 for FA (legible), 200 for EN (Dala signature) */}
+          {/* Display headline */}
           <h1
-            className="text-white leading-[0.9] mb-5"
+            className="text-[#1a1a1a] leading-[0.9] mb-5"
             style={{
               fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
               fontWeight: isRTL ? 300 : 200,
@@ -50,16 +50,16 @@ export function Hero({ locale }: { locale: Locale }) {
           {/* Subtitle */}
           <p
             className="font-semibold text-xs uppercase tracking-[0.06em] mb-6"
-            style={{ color: '#8052ff' }}
+            style={{ color: '#2C4A3E' }}
           >
             {t('subtitle')}
           </p>
 
-          {/* Body — weight 400 for FA, 300 for EN */}
+          {/* Body */}
           <p
             className="text-base leading-relaxed mb-10 max-w-[52ch]"
             style={{
-              color: '#bdbdbd',
+              color: '#4a4a4a',
               fontWeight: isRTL ? 400 : 300,
               letterSpacing: isRTL ? '0.01em' : '0.025em',
               lineHeight: isRTL ? '2' : '1.7',
@@ -72,15 +72,15 @@ export function Hero({ locale }: { locale: Locale }) {
           <div className="flex flex-wrap gap-3">
             <Link
               href={`${prefix}/blog`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-white text-xs font-semibold uppercase tracking-[0.05em] transition-colors"
-              style={{ background: '#8052ff' }}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-white text-xs font-semibold uppercase tracking-[0.05em] transition-colors hover:opacity-90"
+              style={{ background: '#2C4A3E' }}
             >
               {t('ctaPrimary')}
             </Link>
             <Link
               href={`${prefix}/contact`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.05em] transition-colors"
-              style={{ border: '1px solid #ffb829', color: '#ffb829' }}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.05em] transition-colors hover:bg-[#2C4A3E]/10"
+              style={{ border: '1px solid #2C4A3E', color: '#2C4A3E' }}
             >
               {t('ctaSecondary')}
             </Link>

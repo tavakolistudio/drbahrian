@@ -30,25 +30,25 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
   const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
 
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-[#F0EEE9]">
       <div className="site-container">
         <div className="flex items-center gap-4 mb-12">
-          <div className="w-6 h-px bg-[#ffb829]" />
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9a9a9a]">
+          <div className="w-6 h-px bg-[#2C4A3E]" />
+          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#6b6b6b]">
             {t('title')}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/[0.08]">
           {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`${prefix}/blog/category/${cat.slug}`}
-              className="group block p-6 bg-black hover:bg-[#8052ff]/[0.06] transition-colors duration-200"
+              className="group block p-6 bg-[#F0EEE9] hover:bg-[#2C4A3E]/[0.06] transition-colors duration-200"
             >
-              <h3 className="text-sm font-medium text-white group-hover:text-[#8052ff] transition-colors mb-2 leading-snug">
+              <h3 className="text-sm font-medium text-[#1a1a1a] group-hover:text-[#2C4A3E] transition-colors mb-2 leading-snug">
                 {cat.label}
               </h3>
-              <p className="text-xs text-[#9a9a9a] leading-relaxed">{cat.description}</p>
+              <p className="text-xs text-[#6b6b6b] leading-relaxed">{cat.description}</p>
             </Link>
           ))}
         </div>

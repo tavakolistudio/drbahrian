@@ -19,11 +19,11 @@ const base =
 
 const variants = {
   primary:
-    'bg-[#8052ff] text-white hover:bg-[#6b3fe0]',
+    'bg-[#2C4A3E] text-white hover:bg-[#1e3429]',
   secondary:
-    'border border-[#ffb829] text-[#ffb829] hover:bg-[#ffb829]/10',
+    'border border-[#2C4A3E] text-[#2C4A3E] hover:bg-[#2C4A3E]/10',
   ghost:
-    'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/5',
+    'text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-black/5',
   outline:
     'border border-[var(--border-dark)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]',
 }

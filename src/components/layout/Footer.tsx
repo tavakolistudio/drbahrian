@@ -18,7 +18,7 @@ export function Footer({ locale }: { locale: Locale }) {
   ]
 
   return (
-    <footer className="mt-24 border-t border-white/[0.06] bg-black">
+    <footer className="mt-24 border-t border-black/[0.08] bg-[#2C4A3E]">
       <div className="site-container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
@@ -28,7 +28,7 @@ export function Footer({ locale }: { locale: Locale }) {
                 {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
               </span>
             </Link>
-            <p className="text-sm text-[#9a9a9a] leading-relaxed max-w-xs tracking-[0.025em]">
+            <p className="text-sm text-white/70 leading-relaxed max-w-xs tracking-[0.025em]">
               {locale === 'fa'
                 ? 'روان‌شناس بالینی، درمان‌گر، نویسنده و مدرس دانشگاه'
                 : 'Clinical Psychologist, Psychotherapist, Author & Lecturer'}
@@ -37,7 +37,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
           {/* Quick links */}
           <div>
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-4">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-white/50 mb-4">
               {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
@@ -45,7 +45,7 @@ export function Footer({ locale }: { locale: Locale }) {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-[#9a9a9a] hover:text-white transition-colors tracking-[0.021em]"
+                    className="text-sm text-white/70 hover:text-white transition-colors tracking-[0.021em]"
                   >
                     {l.label}
                   </Link>
@@ -56,14 +56,14 @@ export function Footer({ locale }: { locale: Locale }) {
 
           {/* Contact */}
           <div>
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-4">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-white/50 mb-4">
               {t('footer.contactInfo')}
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:bahriyanmaryam@gmail.com"
-                  className="flex items-center gap-2 text-sm text-[#9a9a9a] hover:text-[#8052ff] transition-colors"
+                  className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
                 >
                   <Mail size={14} />
                   bahriyanmaryam@gmail.com
@@ -74,7 +74,7 @@ export function Footer({ locale }: { locale: Locale }) {
                   href="https://t.me/psychofreepen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-[#9a9a9a] hover:text-[#8052ff] transition-colors"
+                  className="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors"
                 >
                   <Send size={14} />
                   @psychofreepen
@@ -84,7 +84,7 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#9a9a9a] tracking-[0.021em]">
+        <div className="mt-10 pt-6 border-t border-white/[0.15] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-white/50 tracking-[0.021em]">
           <span>
             {locale === 'fa' ? `© ${year} دکتر مریم بهریان` : `© ${year} Dr. Maryam Bahrian`}
             {' — '}

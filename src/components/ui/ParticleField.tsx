@@ -1,17 +1,10 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-const PALETTE = ['#8052ff', '#8052ff', '#8052ff', '#ffb829', '#15846e', '#ffffff', '#bdbdbd']
+// Colors visible on warm-white (#F0EEE9) background
+const PALETTE = ['#2C4A3E', '#2C4A3E', '#3d6b5a', '#8052ff', '#15846e', '#ffb829', '#1e3429', '#4a3000']
 type Shape = 'circle' | 'triangle' | 'diamond' | 'square'
 const SHAPES: Shape[] = ['circle', 'triangle', 'diamond', 'square']
-
-// Cluster centers stored as canvas FRACTIONS — resize-safe
-const CLUSTERS = [
-  { fx: 0.72, fy: 0.35, r: 150 },
-  { fx: 0.55, fy: 0.68, r: 95 },
-  { fx: 0.88, fy: 0.70, r: 75 },
-  { fx: 0.65, fy: 0.18, r: 55 },
-]
 
 interface Particle {
   x: number; y: number; size: number
@@ -19,6 +12,20 @@ interface Particle {
   shape: Shape; opacity: number
   cfx: number; cfy: number; cr: number
 }
+
+// LTR clusters: right side  |  RTL clusters: left side
+const CLUSTERS_LTR = [
+  { fx: 0.72, fy: 0.35, r: 150 },
+  { fx: 0.55, fy: 0.68, r: 95 },
+  { fx: 0.88, fy: 0.70, r: 75 },
+  { fx: 0.65, fy: 0.18, r: 55 },
+]
+const CLUSTERS_RTL = [
+  { fx: 0.28, fy: 0.35, r: 150 },
+  { fx: 0.45, fy: 0.68, r: 95 },
+  { fx: 0.12, fy: 0.70, r: 75 },
+  { fx: 0.35, fy: 0.18, r: 55 },
+]
 
 function drawP(ctx: CanvasRenderingContext2D, p: Particle) {
   ctx.save()
@@ -38,7 +45,7 @@ function drawP(ctx: CanvasRenderingContext2D, p: Particle) {
   ctx.restore()
 }
 
-export function ParticleField({ className }: { className?: string }) {
+export function ParticleField({ className, rtl = false }: { className?: string; rtl?: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -47,10 +54,10 @@ export function ParticleField({ className }: { className?: string }) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    const CLUSTERS = rtl ? CLUSTERS_RTL : CLUSTERS_LTR
     let raf: number
     let particles: Particle[] = []
 
-    // Fallback to window size if canvas hasn't been laid out yet
     const getW = () => canvas.offsetWidth || canvas.parentElement?.offsetWidth || window.innerWidth || 1200
     const getH = () => canvas.offsetHeight || canvas.parentElement?.offsetHeight || window.innerHeight || 800
 
@@ -65,7 +72,7 @@ export function ParticleField({ className }: { className?: string }) {
       particles = Array.from({ length: 750 }, () => {
         const c = CLUSTERS[Math.floor(Math.random() * CLUSTERS.length)]
         const angle = Math.random() * Math.PI * 2
-        const dist = Math.pow(Math.random(), 0.5) * c.r  // sqrt distribution — denser at center
+        const dist = Math.pow(Math.random(), 0.5) * c.r
         return {
           x: c.fx * w + Math.cos(angle) * dist,
           y: c.fy * h + Math.sin(angle) * dist,
@@ -74,7 +81,7 @@ export function ParticleField({ className }: { className?: string }) {
           vx: (Math.random() - 0.5) * 0.4,
           vy: (Math.random() - 0.5) * 0.4,
           shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
-          opacity: 0.15 + Math.random() * 0.85,
+          opacity: 0.15 + Math.random() * 0.7,
           cfx: c.fx, cfy: c.fy, cr: c.r,
         }
       })
@@ -90,7 +97,6 @@ export function ParticleField({ className }: { className?: string }) {
 
       ctx.clearRect(0, 0, w, h)
       for (const p of particles) {
-        // Compute absolute cluster center from fraction × current dims
         const cx = p.cfx * w
         const cy = p.cfy * h
         const dx = cx - p.x
@@ -110,14 +116,11 @@ export function ParticleField({ className }: { className?: string }) {
     }
     tick()
 
-    const ro = new ResizeObserver(() => {
-      setSize()
-      initParticles()
-    })
+    const ro = new ResizeObserver(() => { setSize(); initParticles() })
     ro.observe(canvas.parentElement || canvas)
 
     return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  }, [rtl])
 
   return (
     <canvas
