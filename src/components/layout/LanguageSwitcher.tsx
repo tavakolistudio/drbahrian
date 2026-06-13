@@ -10,15 +10,8 @@ export function LanguageSwitcher({ className }: { className?: string }) {
   const router = useRouter()
 
   function switchLocale() {
-    const target = locale === 'fa' ? 'en' : 'fa'
-    let newPath = pathname
-
-    if (locale === 'fa') {
-      newPath = `/en${pathname}`
-    } else {
-      newPath = pathname.replace(/^\/en/, '') || '/'
-    }
-
+    const rawPath = pathname.replace(/^\/(fa|en)/, '') || '/'
+    const newPath = locale === 'fa' ? `/en${rawPath}` : rawPath
     router.push(newPath)
   }
 
