@@ -1,4 +1,4 @@
-import prisma from './prisma'
+import { prisma } from './prisma'
 import type { Post, PostMeta, Locale } from '@/types'
 import { Prisma } from '@prisma/client'
 
@@ -87,12 +87,16 @@ export async function getDbRelatedPosts(post: PostMeta, locale: Locale): Promise
 
 // Admin-only: all posts (draft + published)
 export async function adminGetAllPosts(locale?: string) {
-  return prisma.post.findMany({
-    where: locale ? { locale } : undefined,
-    orderBy: { createdAt: 'desc' },
-  })
+  try {
+    return await prisma.post.findMany({
+      where: locale ? { locale } : undefined,
+      orderBy: { createdAt: 'desc' },
+    })
+  } catch { return [] }
 }
 
 export async function adminGetPostById(id: string) {
-  return prisma.post.findUnique({ where: { id } })
+  try {
+    return await prisma.post.findUnique({ where: { id } })
+  } catch { return null }
 }
