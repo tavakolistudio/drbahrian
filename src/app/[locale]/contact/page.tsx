@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { ContactForm } from '@/components/contact/ContactForm'
 import type { Locale } from '@/types'
@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params
+  setRequestLocale(locale)
   const t = await getTranslations({ locale })
   const prefix = `/${locale}`
 

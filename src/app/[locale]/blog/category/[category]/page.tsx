@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { PostCard } from '@/components/blog/PostCard'
 import { getPostsByCategory, getAllCategories } from '@/lib/posts'
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoryPage({ params }: Props) {
   const { locale, category } = await params
+  setRequestLocale(locale)
   const decoded = decodeURIComponent(category)
   const t = await getTranslations({ locale })
   const l = locale as Locale
