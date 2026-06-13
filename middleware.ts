@@ -1,13 +1,9 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { jwtVerify } from 'jose'
+import createIntlMiddleware from 'next-intl/middleware'
+import { routing } from '@/i18n/routing'
 
-const locales = ['fa', 'en'] as const
-const defaultLocale = 'fa'
-
-// Paths that bypass the locale rewrite AND have their own auth logic
-const RESERVE_PATHS = ['/reserve']
-const ADMIN_PUBLIC_PATHS = ['/admin/login']
-const ADMIN_PATHS = ['/admin']
+const intlMiddleware = createIntlMiddleware(routing)
 
 function getSecret() {
   return new TextEncoder().encode(
@@ -20,7 +16,6 @@ export default async function middleware(request: NextRequest) {
 
   // ── Admin route protection ──────────────────────────────────────────────
   if (pathname.startsWith('/admin')) {
-    // Allow login page through
     if (pathname === '/admin/login') {
       return NextResponse.next()
     }
@@ -41,7 +36,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // ── Pass /reserve and /api through without locale rewrite ────────────────
+  // ── Pass /reserve and /api through without locale handling ───────────────
   if (
     pathname.startsWith('/reserve') ||
     pathname.startsWith('/api') ||
@@ -51,19 +46,12 @@ export default async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // ── Locale routing for main site ─────────────────────────────────────────
-  const hasLocale = locales.some(
-    (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
-  )
-  if (hasLocale) return NextResponse.next()
-
-  const newPath = `/${defaultLocale}${pathname === '/' ? '' : pathname}`
-  return NextResponse.rewrite(new URL(newPath, request.url))
+  // ── next-intl middleware handles locale detection + requestLocale context ─
+  return intlMiddleware(request)
 }
 
 export const config = {
   matcher: [
-    '/',
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    '/((?!_next|_vercel|.*\\..*).*)',
   ],
 }
