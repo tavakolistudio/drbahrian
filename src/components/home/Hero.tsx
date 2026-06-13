@@ -15,6 +15,16 @@ export function Hero({ locale }: { locale: Locale }) {
         <ParticleField className="w-full h-full" rtl={isRTL} />
       </div>
 
+      {/* Subtle dark atmosphere behind the brain area to boost particle contrast */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: isRTL
+            ? 'radial-gradient(ellipse 48% 65% at 24% 44%, rgba(44,74,62,0.10) 0%, transparent 72%)'
+            : 'radial-gradient(ellipse 48% 65% at 76% 44%, rgba(44,74,62,0.10) 0%, transparent 72%)',
+        }}
+      />
+
       {/* Gradient: fades text side to bg color, leaves particle side transparent */}
       <div
         className="absolute inset-0 pointer-events-none"
