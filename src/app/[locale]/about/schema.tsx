@@ -5,8 +5,8 @@ export function PersonSchema({ locale }: { locale: string }) {
     name: locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian',
     jobTitle:
       locale === 'fa'
-        ? 'روان‌شناس بالینی، درمان‌گر و نویسنده'
-        : 'Clinical Psychologist, Psychotherapist, Author',
+        ? 'روان‌شناس بالینی و درمان‌گر'
+        : 'Clinical Psychologist, Psychotherapist',
     email: 'bahriyanmaryam@gmail.com',
     url: 'https://drmaryambahrian.ir',
     sameAs: ['https://t.me/psychofreepen'],

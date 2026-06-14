@@ -31,8 +31,8 @@ export function Footer({ locale }: { locale: Locale }) {
             </p>
             <p className="text-sm text-[#707070] leading-relaxed max-w-xs">
               {locale === 'fa'
-                ? 'روان‌شناس بالینی، درمان‌گر و نویسنده'
-                : 'Clinical Psychologist, Psychotherapist & Author'}
+                ? 'روان‌شناس بالینی و درمان‌گر'
+                : 'Clinical Psychologist & Psychotherapist'}
             </p>
           </div>
 

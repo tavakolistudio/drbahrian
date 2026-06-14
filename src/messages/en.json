@@ -11,7 +11,7 @@
   "home": {
     "hero": {
       "name": "Dr. Maryam Bahrian",
-      "subtitle": "Clinical Psychologist | Psychotherapist | Author | Researcher",
+      "subtitle": "Clinical Psychologist | Psychotherapist | Researcher",
       "intro": "Exploring the mind, language, culture, and the human psyche through the lens of psychoanalysis, clinical research, and therapeutic practice.",
       "ctaPrimary": "Read Articles",
       "ctaSecondary": "Get in Touch"
@@ -26,22 +26,22 @@
     "about": {
       "label": "About Dr. Bahrian",
       "title": "Research, Therapy, and Thought",
-      "text": "Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, and author. Her research lies at the intersection of psychoanalysis, culture, language, and politics. The writings on this website open a window into her clinical reflections, cultural analyses, and psychoanalytic essays.",
+      "text": "Dr. Maryam Bahrian is a clinical psychologist and psychotherapist. Her research lies at the intersection of psychoanalysis, culture, language, and politics. The writings on this website open a window into her clinical reflections, cultural analyses, and psychoanalytic essays.",
       "cta": "Learn More"
     },
     "credentials": {
       "title": "Professional Credentials",
       "items": [
         "PhD in Clinical and General Psychology",
-        "Author and Researcher in Psychology",
+        "Researcher in Psychology",
         "Clinical Psychotherapist with extensive experience"
       ]
     }
   },
   "about": {
     "title": "About Dr. Maryam Bahrian",
-    "metaDescription": "Learn about Dr. Maryam Bahrian, clinical psychologist, psychotherapist, and author",
-    "intro": "Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, author, and researcher in the field of psychology.",
+    "metaDescription": "Learn about Dr. Maryam Bahrian, clinical psychologist and psychotherapist",
+    "intro": "Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, and researcher in the field of psychology.",
     "sections": {
       "education": "Education",
       "clinical": "Clinical Practice",
@@ -120,7 +120,7 @@
   "meta": {
     "siteName": "Dr. Maryam Bahrian",
     "defaultTitle": "Dr. Maryam Bahrian | Clinical Psychologist",
-    "defaultDescription": "Official website of Dr. Maryam Bahrian, clinical psychologist, psychotherapist, and author"
+    "defaultDescription": "Official website of Dr. Maryam Bahrian, clinical psychologist and psychotherapist"
   },
   "lang": {
     "switch": "فارسی",
