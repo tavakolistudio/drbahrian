@@ -30,7 +30,7 @@ export function LatestPosts({ posts, locale }: LatestPostsProps) {
               key={post.slug}
               post={post}
               locale={locale}
-              variant={i === 0 ? 'featured' : 'default'}
+              variant="default"
             />
           ))}
         </div>
