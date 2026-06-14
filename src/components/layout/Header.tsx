@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
 import { cn } from '@/lib/utils'
@@ -59,15 +60,24 @@ export function Header() {
           {/* Logo */}
           <Link
             href={`${prefix}/`}
-            className="flex flex-col leading-none group"
+            className="flex items-center gap-2 group"
             aria-label="دکتر مریم بهریان - خانه"
           >
-            <span className="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
-              {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
-            </span>
-            <span className="text-[10px] text-[#707070] tracking-[0.04em] uppercase">
-              {locale === 'fa' ? 'روان‌شناس بالینی' : 'Clinical Psychologist'}
-            </span>
+            <Image
+              src="/logo.png"
+              alt="دکتر مریم بهریان"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <div className="flex flex-col leading-none">
+              <span className="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
+                {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
+              </span>
+              <span className="text-[10px] text-[#707070] tracking-[0.04em] uppercase">
+                {locale === 'fa' ? 'روان‌شناس بالینی' : 'Clinical Psychologist'}
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
