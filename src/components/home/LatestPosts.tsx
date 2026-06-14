@@ -13,22 +13,39 @@ export function LatestPosts({ posts, locale }: LatestPostsProps) {
   const prefix = `/${locale}`
 
   return (
-    <section className="py-20 bg-[#F9F8F5]">
+    <section className="py-[88px] bg-[#f2f8f7]">
       <div className="site-container">
         {/* Section header */}
         <div className="flex items-center justify-between mb-12">
-          <div className="flex items-center gap-4">
-            <div className="w-6 h-px bg-[#2C4A3E]" />
-            <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#6b6b6b]">
-              {t('title')}
-            </h2>
-          </div>
+          <p
+            className="flex items-center gap-2"
+            style={{
+              fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace',
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.059em',
+              textTransform: 'uppercase',
+              color: '#283338',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background: '#1c5d5f',
+                flexShrink: 0,
+              }}
+            />
+            {t('title')}
+          </p>
           <Button href={`${prefix}/blog`} variant="ghost" size="sm">
-            {t('viewAll')} ←
+            {t('viewAll')} →
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {posts.map((post, i) => (
             <PostCard
               key={post.slug}

@@ -30,25 +30,42 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
   const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
 
   return (
-    <section className="py-20 bg-[#F0EEE9]">
+    <section className="py-[88px] bg-[#f2e8e2]">
       <div className="site-container">
-        <div className="flex items-center gap-4 mb-12">
-          <div className="w-6 h-px bg-[#2C4A3E]" />
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#6b6b6b]">
-            {t('title')}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/[0.08]">
+        <p
+          className="flex items-center gap-2 mb-12"
+          style={{
+            fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace',
+            fontSize: '13px',
+            fontWeight: 600,
+            letterSpacing: '0.059em',
+            textTransform: 'uppercase',
+            color: '#283338',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-block',
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: '#d6aec1',
+              flexShrink: 0,
+            }}
+          />
+          {t('title')}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {categories.map((cat) => (
             <Link
               key={cat.slug}
               href={`${prefix}/blog/category/${cat.slug}`}
-              className="group block p-6 bg-[#F0EEE9] hover:bg-[#2C4A3E]/[0.06] transition-colors duration-200"
+              className="group block p-6 bg-[#f2e8e2] border border-[#d6aec1]/40 hover:bg-[#e4f0f1] hover:border-[#a2cbcd] transition-colors duration-200 rounded-[12px]"
             >
-              <h3 className="text-sm font-medium text-[#1a1a1a] group-hover:text-[#2C4A3E] transition-colors mb-2 leading-snug">
+              <h3 className="text-sm font-medium text-[#283338] group-hover:text-[#1c5d5f] transition-colors mb-2 leading-snug">
                 {cat.label}
               </h3>
-              <p className="text-xs text-[#6b6b6b] leading-relaxed">{cat.description}</p>
+              <p className="text-xs text-[#5a7074] leading-relaxed">{cat.description}</p>
             </Link>
           ))}
         </div>

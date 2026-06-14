@@ -1,4 +1,4 @@
-export default function ReserveUnavailablePage() {
+﻿export default function ReserveUnavailablePage() {
   return (
     <div className="text-center py-12">
       <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-3xl mx-auto mb-6">
@@ -11,13 +11,13 @@ export default function ReserveUnavailablePage() {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="/reserve"
-          className="inline-block px-6 py-2.5 bg-[#2C4A3E] text-white text-sm font-medium rounded-xl hover:bg-[#1e3429] transition"
+          className="inline-block px-6 py-2.5 bg-[#1c5d5f] text-white text-sm font-medium rounded-[48px] hover:bg-[#156152] transition"
         >
           انتخاب وقت دیگر
         </a>
         <a
           href="/"
-          className="inline-block px-6 py-2.5 border border-[#E8E5DF] text-[#4a4a4a] text-sm rounded-xl hover:bg-[#F0EEE9] transition"
+          className="inline-block px-6 py-2.5 border border-[#e4f0f1] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[#e4f0f1] transition"
         >
           بازگشت به صفحه اصلی
         </a>
@@ -25,3 +25,4 @@ export default function ReserveUnavailablePage() {
     </div>
   )
 }
+

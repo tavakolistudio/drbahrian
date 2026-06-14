@@ -10,12 +10,12 @@ interface BadgeProps {
 
 export function Badge({ children, href, variant = 'default', className }: BadgeProps) {
   const classes = cn(
-    'inline-flex items-center text-[11px] font-semibold uppercase tracking-[0.05em] px-3 py-1 rounded-full transition-colors',
-    variant === 'default' && 'bg-black/5 text-[var(--text-muted)]',
+    'inline-flex items-center text-[11px] font-semibold uppercase tracking-[0.059em] px-3 py-1 rounded-[100px] transition-colors',
+    variant === 'default' && 'bg-[#e4f0f1] text-[#283338]',
     variant === 'category' &&
-      'bg-[#2C4A3E]/10 text-[#2C4A3E] hover:bg-[#2C4A3E] hover:text-white',
+      'bg-[#e4f0f1] text-[#0e4749] hover:bg-[#1c5d5f] hover:text-white',
     variant === 'tag' &&
-      'border border-[var(--border)] text-[var(--text-muted)] hover:border-[var(--accent)] hover:text-[var(--accent)]',
+      'border border-[#a2cbcd] text-[#0e4749] hover:border-[#1c5d5f] hover:text-[#1c5d5f]',
     className
   )
 

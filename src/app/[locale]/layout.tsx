@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
-import { Vazirmatn } from 'next/font/google'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Vazirmatn, Inter, Source_Serif_4, IBM_Plex_Mono } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -25,10 +24,18 @@ const inter = Inter({
   display: 'swap',
 })
 
-const playfair = Playfair_Display({
+const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-playfair',
+  style: ['normal', 'italic'],
+  variable: '--font-source-serif',
+  display: 'swap',
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-ibm-plex-mono',
   display: 'swap',
 })
 
@@ -82,7 +89,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html
       lang={locale}
       dir={isRTL ? 'rtl' : 'ltr'}
-      className={cn(vazirmatn.variable, inter.variable, playfair.variable)}
+      className={cn(vazirmatn.variable, inter.variable, sourceSerif.variable, ibmPlexMono.variable)}
     >
       <body
         className={cn(

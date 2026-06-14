@@ -4,27 +4,36 @@
 
 @layer base {
   :root {
-    /* Dala palette — kept for reference */
-    --color-void: #000000;
-    --color-bone: #ffffff;
-    --color-ash: #bdbdbd;
-    --color-smoke: #9a9a9a;
-    --color-plum-voltage: #8052ff;
-    --color-amber-spark: #ffb829;
-    --color-lichen: #15846e;
+    /* User Interviews palette */
+    --color-deep-teal: #1c5d5f;
+    --color-pine-shadow: #0e4749;
+    --color-sage: #65b8a2;
+    --color-lake-teal: #2a7779;
+    --color-forest-floor: #156152;
+    --color-ink-navy: #16325a;
+    --color-dusty-rose: #d6aec1;
+    --color-mint-mist: #a2cbcd;
+    --color-sea-foam: #cae1e2;
+    --color-paper-white: #f2f8f7;
+    --color-card-mint: #e4f0f1;
+    --color-blush-sand: #f2e8e2;
+    --color-charcoal-navy: #283338;
+    --color-slate: #333333;
+    --color-soft-black: #1a1a1a;
+    --color-illustration-ink: #231e21;
 
-    /* Semantic tokens — warm/light (matches reservation section) */
-    --bg: #F0EEE9;
-    --surface: #F9F8F5;
-    --border: rgba(0, 0, 0, 0.08);
-    --border-dark: rgba(0, 0, 0, 0.18);
-    --text-primary: #1a1a1a;
-    --text-secondary: #4a4a4a;
-    --text-muted: #6b6b6b;
-    --accent: #2C4A3E;
-    --accent-hover: #1e3429;
-    --accent-light: rgba(44, 74, 62, 0.1);
-    --accent-text: #2C4A3E;
+    /* Semantic tokens */
+    --bg: #f2f8f7;
+    --surface: #e4f0f1;
+    --border: #e4f0f1;
+    --border-dark: #a2cbcd;
+    --text-primary: #283338;
+    --text-secondary: #333333;
+    --text-muted: #5a7074;
+    --accent: #1c5d5f;
+    --accent-hover: #156152;
+    --accent-light: rgba(28, 93, 95, 0.1);
+    --accent-text: #0e4749;
   }
 
   * { box-sizing: border-box; }
@@ -41,7 +50,7 @@
     color: var(--text-primary);
   }
 
-  /* Persian text — minimum weight 300 for legibility */
+  /* Persian text */
   [dir="rtl"] body,
   [dir="rtl"] p,
   [dir="rtl"] li,
@@ -53,7 +62,7 @@
   }
 
   ::selection {
-    background-color: rgba(128, 82, 255, 0.35);
+    background-color: rgba(28, 93, 95, 0.25);
     color: #ffffff;
   }
 
@@ -66,7 +75,7 @@
 
 @layer components {
   .site-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .prose-article {
@@ -79,7 +88,8 @@
   .prose-article h3,
   .prose-article h4 {
     color: var(--text-primary);
-    font-weight: 300;
+    font-weight: 400;
+    font-family: var(--font-source-serif), Georgia, serif;
   }
 
   .prose-article a { color: var(--accent-text); }
@@ -105,6 +115,29 @@
     border-left: none;
     padding-right: 1.5rem;
     padding-left: 0;
+  }
+
+  /* Section eyebrow — IBM Plex Mono uppercase */
+  .eyebrow {
+    font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.059em;
+    text-transform: uppercase;
+    color: var(--color-charcoal-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-deep-teal);
+    flex-shrink: 0;
   }
 }
 
