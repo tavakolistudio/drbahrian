@@ -53,7 +53,7 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
             fontFamily: isRTL
               ? 'var(--font-vazir), Tahoma, sans-serif'
               : 'var(--font-source-serif), Georgia, serif',
-            fontWeight: isRTL ? 500 : 400,
+            fontWeight: isRTL ? 500 : 700,
           }}
         >
           {post.title}

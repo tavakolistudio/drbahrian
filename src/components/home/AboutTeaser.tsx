@@ -57,9 +57,9 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
                   ? 'var(--font-vazir), Tahoma, sans-serif'
                   : 'var(--font-source-serif), Georgia, serif',
                 fontSize: 'clamp(1.8rem, 3.5vw, 2.75rem)',
-                fontWeight: isRTL ? 300 : 400,
-                letterSpacing: isRTL ? '-0.01em' : '-0.01em',
-                lineHeight: 1.2,
+                fontWeight: isRTL ? 300 : 800,
+                letterSpacing: isRTL ? '-0.01em' : '-0.03em',
+                lineHeight: 1.15,
               }}
             >
               {t('title')}

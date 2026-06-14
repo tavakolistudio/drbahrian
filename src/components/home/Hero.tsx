@@ -69,10 +69,10 @@ export function Hero({ locale }: { locale: Locale }) {
               fontFamily: isRTL
                 ? 'var(--font-vazir), Tahoma, sans-serif'
                 : 'var(--font-source-serif), Georgia, serif',
-              fontSize: 'clamp(2.8rem, 6.5vw, 5rem)',
-              fontWeight: isRTL ? 300 : 400,
-              letterSpacing: isRTL ? '-0.01em' : '-0.02em',
-              lineHeight: 1.1,
+              fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
+              fontWeight: isRTL ? 300 : 800,
+              letterSpacing: isRTL ? '-0.01em' : '-0.04em',
+              lineHeight: 1.0,
             }}
           >
             {t('name')}

@@ -69,9 +69,9 @@ const config: Config = {
             },
             'h1, h2, h3, h4': {
               color: '#283338',
-              fontWeight: '400',
+              fontWeight: '800',
               fontFamily: 'var(--font-source-serif), Georgia, serif',
-              letterSpacing: '-0.01em',
+              letterSpacing: '-0.03em',
             },
             blockquote: {
               borderInlineStartColor: '#1c5d5f',
