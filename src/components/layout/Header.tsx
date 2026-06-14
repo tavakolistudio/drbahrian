@@ -13,8 +13,8 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
     <Link
       href={href}
       className={cn(
-        'text-sm tracking-[0.021em] transition-colors py-1 px-2',
-        active ? 'text-white' : 'text-[#9a9a9a] hover:text-white'
+        'text-sm transition-colors py-1 px-2',
+        active ? 'text-[#1d1d1f] font-medium' : 'text-[#707070] hover:text-[#1d1d1f]'
       )}
     >
       {label}
@@ -52,7 +52,7 @@ export function Header() {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         scrolled
-          ? 'bg-black/90 backdrop-blur-md border-b border-white/[0.06]'
+          ? 'bg-white/90 backdrop-blur-md border-b border-[#e8e8ed]'
           : 'bg-transparent'
       )}
     >
@@ -64,10 +64,10 @@ export function Header() {
             className="flex flex-col leading-none group"
             aria-label="دکتر مریم بهریان - خانه"
           >
-            <span className="text-base font-semibold text-white group-hover:text-[#8052ff] transition-colors tracking-[-0.02em]">
+            <span className="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
               {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
             </span>
-            <span className="text-[11px] text-[#9a9a9a] tracking-[0.05em] uppercase" style={{ fontSize: '10px' }}>
+            <span className="text-[10px] text-[#707070] tracking-[0.04em] uppercase">
               {locale === 'fa' ? 'روان‌شناس بالینی' : 'Clinical Psychologist'}
             </span>
           </Link>
@@ -89,10 +89,10 @@ export function Header() {
             <Link
               href="/reserve"
               className={cn(
-                'text-sm tracking-[0.021em] transition-colors py-1 px-2',
+                'text-sm transition-colors py-1 px-2',
                 pathname.startsWith('/reserve')
-                  ? 'text-[#ffb829]'
-                  : 'text-[#9a9a9a] hover:text-[#ffb829]'
+                  ? 'text-[#0071e3] font-medium'
+                  : 'text-[#707070] hover:text-[#0071e3]'
               )}
             >
               {t('reserve')}
@@ -104,13 +104,13 @@ export function Header() {
             <LanguageSwitcher />
             <Link
               href={`${prefix}/contact`}
-              className="hidden md:inline-flex items-center px-4 py-2 text-white text-xs font-semibold uppercase tracking-[0.05em] transition-all hover:opacity-80"
-              style={{ background: '#8052ff', borderRadius: '24px' }}
+              className="hidden md:inline-flex items-center px-4 py-2 text-white text-sm font-medium transition-opacity hover:opacity-80"
+              style={{ backgroundColor: '#0071e3', borderRadius: '999px' }}
             >
               {t('contact')}
             </Link>
             <button
-              className="md:hidden p-2 text-[#9a9a9a] hover:text-white transition-colors"
+              className="md:hidden p-2 text-[#707070] hover:text-[#1d1d1f] transition-colors"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-label={open ? t('menuClose') : t('menuOpen')}
@@ -123,19 +123,19 @@ export function Header() {
 
       {/* Mobile nav */}
       {open && (
-        <div className="md:hidden border-t border-white/[0.06] bg-black/95 backdrop-blur-md">
+        <div className="md:hidden border-t border-[#e8e8ed] bg-white/95 backdrop-blur-md">
           <nav className="site-container py-4 flex flex-col gap-1">
             {[...links, { href: '/reserve', label: t('reserve') }, { href: `${prefix}/contact`, label: t('contact') }].map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 className={cn(
-                  'py-2.5 px-4 rounded-[24px] text-sm tracking-[0.021em] transition-colors',
+                  'py-2.5 px-4 rounded-[28px] text-sm transition-colors',
                   (l.href === `${prefix}/`
                     ? pathname === `${prefix}/` || pathname === '/'
                     : pathname.startsWith(l.href))
-                    ? 'text-white bg-white/[0.06]'
-                    : 'text-[#9a9a9a] hover:text-white hover:bg-white/[0.04]'
+                    ? 'text-[#1d1d1f] font-medium bg-[#f5f5f7]'
+                    : 'text-[#707070] hover:text-[#1d1d1f] hover:bg-[#f5f5f7]'
                 )}
               >
                 {l.label}

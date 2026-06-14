@@ -15,23 +15,23 @@ interface ButtonProps {
 }
 
 const base =
-  'inline-flex items-center justify-center gap-2 font-semibold uppercase tracking-[0.05em] transition-all duration-200 rounded-[24px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8052ff] disabled:opacity-40 disabled:cursor-not-allowed'
+  'inline-flex items-center justify-center gap-2 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0071e3] disabled:opacity-40 disabled:cursor-not-allowed'
 
 const variants = {
   primary:
-    'bg-[#8052ff] text-white hover:opacity-80',
+    'bg-[#0071e3] text-white hover:opacity-80 rounded-[999px]',
   secondary:
-    'bg-white/[0.06] text-white hover:bg-white/[0.1] border border-white/[0.1]',
+    'bg-[#000000] text-white hover:opacity-80 rounded-[999px]',
   ghost:
-    'text-[#9a9a9a] hover:text-white',
+    'text-[#0066cc] hover:underline',
   outline:
-    'border border-white/20 text-[#bdbdbd] hover:border-white/40 hover:text-white',
+    'border border-[#e8e8ed] text-[#1d1d1f] hover:border-[#1d1d1f] rounded-[999px]',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-[11px]',
-  md: 'px-5 py-2.5 text-xs',
-  lg: 'px-6 py-3 text-xs',
+  sm: 'px-4 py-2 text-sm font-medium',
+  md: 'px-6 py-3 text-[17px] font-normal',
+  lg: 'px-8 py-3.5 text-[17px] font-normal',
 }
 
 export function Button({

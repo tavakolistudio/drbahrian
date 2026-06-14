@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import type { Locale } from '@/types'
@@ -32,9 +30,9 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
   const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
 
   return (
-    <section className="py-[60px] bg-black">
+    <section className="py-[80px] bg-[#f5f5f7]">
       <div className="site-container">
-        <p className="text-xs font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#707070] mb-10">
           {t('title')}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -42,23 +40,12 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
             <Link
               key={cat.slug}
               href={`${prefix}/blog/category/${cat.slug}`}
-              className="group block p-5 transition-all duration-200 rounded-[24px]"
-              style={{ border: '1px solid rgba(255,255,255,0.06)' }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(128,82,255,0.3)'
-                el.style.background = 'rgba(128,82,255,0.04)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'rgba(255,255,255,0.06)'
-                el.style.background = 'transparent'
-              }}
+              className="group block p-5 rounded-[28px] border border-[#e8e8ed] bg-white hover:border-[#0071e3]/30 hover:bg-[rgba(0,113,227,0.015)] transition-all duration-200"
             >
-              <h3 className="text-sm font-medium text-[#bdbdbd] group-hover:text-white transition-colors mb-2 leading-snug">
+              <h3 className="text-sm font-medium text-[#1d1d1f] group-hover:text-[#0066cc] transition-colors mb-2 leading-snug">
                 {cat.label}
               </h3>
-              <p className="text-xs text-[#9a9a9a] leading-relaxed">{cat.description}</p>
+              <p className="text-xs text-[#707070] leading-relaxed">{cat.description}</p>
             </Link>
           ))}
         </div>

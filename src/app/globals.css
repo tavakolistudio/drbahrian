@@ -4,27 +4,23 @@
 
 @layer base {
   :root {
-    /* Dala palette */
-    --color-void: #000000;
-    --color-bone: #ffffff;
-    --color-ash: #bdbdbd;
-    --color-smoke: #9a9a9a;
-    --color-plum-voltage: #8052ff;
-    --color-amber-spark: #ffb829;
-    --color-lichen: #15846e;
+    /* Apple palette */
+    --color-ink: #1d1d1f;
+    --color-graphite: #707070;
+    --color-fog: #f5f5f7;
+    --color-snow: #ffffff;
+    --color-silver-mist: #e8e8ed;
+    --color-azure: #0071e3;
+    --color-cobalt: #0066cc;
 
-    /* Semantic tokens */
-    --bg: #000000;
-    --surface: rgba(255, 255, 255, 0.04);
-    --border: rgba(255, 255, 255, 0.1);
-    --border-dark: rgba(255, 255, 255, 0.18);
-    --text-primary: #ffffff;
-    --text-secondary: #bdbdbd;
-    --text-muted: #9a9a9a;
-    --accent: #8052ff;
-    --accent-hover: #6a3de8;
-    --accent-light: rgba(128, 82, 255, 0.15);
-    --accent-text: #8052ff;
+    /* Semantic */
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --border: #e8e8ed;
+    --text-primary: #1d1d1f;
+    --text-secondary: #707070;
+    --text-muted: #707070;
+    --accent: #0071e3;
   }
 
   * { box-sizing: border-box; }
@@ -37,29 +33,19 @@
   }
 
   body {
-    background-color: #000000;
-    color: #ffffff;
-  }
-
-  [dir="rtl"] body,
-  [dir="rtl"] p,
-  [dir="rtl"] li,
-  [dir="rtl"] span:not([class*="font-"]),
-  [dir="rtl"] .text-base,
-  [dir="rtl"] .text-sm,
-  [dir="rtl"] .text-xs {
-    font-weight: 400;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
   }
 
   ::selection {
-    background-color: rgba(128, 82, 255, 0.35);
-    color: #ffffff;
+    background-color: rgba(0, 113, 227, 0.2);
+    color: #1d1d1f;
   }
 
   :focus-visible {
-    outline: 2px solid #8052ff;
+    outline: 2px solid #0071e3;
     outline-offset: 2px;
-    border-radius: 24px;
+    border-radius: 28px;
   }
 }
 
@@ -69,28 +55,28 @@
   }
 
   .prose-article {
-    @apply prose prose-invert prose-lg max-w-none;
-    color: #bdbdbd;
+    @apply prose prose-lg max-w-none;
+    color: #1d1d1f;
   }
 
   .prose-article h1,
   .prose-article h2,
   .prose-article h3,
   .prose-article h4 {
-    color: #ffffff;
-    font-weight: 200;
+    color: #1d1d1f;
+    font-weight: 600;
     letter-spacing: -0.03em;
   }
 
-  .prose-article a { color: #8052ff; }
+  .prose-article a { color: #0066cc; }
 
   .prose-article blockquote {
-    border-inline-start-color: #8052ff;
+    border-inline-start-color: #e8e8ed;
     border-inline-end: none;
     border-left: none;
     border-right: none;
     padding-inline-start: 1.5rem;
-    color: #bdbdbd;
+    color: #707070;
     font-style: normal;
   }
 
@@ -101,7 +87,7 @@
   }
 
   [dir="rtl"] .prose-article blockquote {
-    border-right: 3px solid #8052ff;
+    border-right: 3px solid #e8e8ed;
     border-left: none;
     padding-right: 1.5rem;
     padding-left: 0;

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { Badge } from '@/components/ui/Badge'
 import { formatDate } from '@/lib/utils'
@@ -20,12 +18,12 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
 
   if (variant === 'compact') {
     return (
-      <article className="py-4 border-b border-white/[0.06] last:border-0">
+      <article className="py-4 border-b border-[#e8e8ed] last:border-0">
         <Link href={href} className="group">
-          <h3 className="text-sm font-medium text-[#bdbdbd] group-hover:text-white transition-colors mb-1 leading-snug">
+          <h3 className="text-sm font-medium text-[#1d1d1f] group-hover:text-[#0066cc] transition-colors mb-1 leading-snug">
             {post.title}
           </h3>
-          <div className="flex items-center gap-3 text-xs text-[#9a9a9a]">
+          <div className="flex items-center gap-3 text-xs text-[#707070]">
             <span>{formatDate(post.publishedAt, locale)}</span>
             <span>·</span>
             <span className="flex items-center gap-1">
@@ -40,10 +38,7 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
 
   return (
     <article
-      className="group flex flex-col gap-3 p-6 transition-colors duration-200 rounded-[24px]"
-      style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(128,82,255,0.35)')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)')}
+      className="group flex flex-col gap-3 p-6 rounded-[28px] border border-[#e8e8ed] bg-white hover:border-[#0071e3]/30 transition-all duration-200"
     >
       <Badge href={`${prefix}/blog/category/${post.category}`} variant="category">
         {post.category}
@@ -51,11 +46,11 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
 
       <Link href={href}>
         <h2
-          className={`text-white group-hover:text-[#8052ff] transition-colors leading-snug ${
+          className={`text-[#1d1d1f] group-hover:text-[#0066cc] transition-colors leading-snug ${
             variant === 'featured' ? 'text-xl md:text-2xl' : 'text-base'
           }`}
           style={{
-            fontWeight: isRTL ? 500 : 200,
+            fontWeight: isRTL ? 600 : 700,
             letterSpacing: isRTL ? '0' : '-0.02em',
           }}
         >
@@ -64,16 +59,16 @@ export function PostCard({ post, locale, variant = 'default' }: PostCardProps) {
       </Link>
 
       <p
-        className="text-sm line-clamp-3 text-[#9a9a9a]"
+        className="text-sm line-clamp-3 text-[#707070]"
         style={{
           lineHeight: isRTL ? '2' : '1.7',
-          letterSpacing: isRTL ? '0.01em' : '0.025em',
+          letterSpacing: isRTL ? '0.01em' : '-0.003em',
         }}
       >
         {post.excerpt}
       </p>
 
-      <div className="flex items-center gap-3 text-xs text-[#9a9a9a] mt-auto pt-1">
+      <div className="flex items-center gap-3 text-xs text-[#707070] mt-auto pt-1">
         <time dateTime={post.publishedAt}>{formatDate(post.publishedAt, locale)}</time>
         <span>·</span>
         <span className="flex items-center gap-1">
