@@ -35,8 +35,6 @@ export function Header() {
     { href: `${prefix}/`, label: t('home') },
     { href: `${prefix}/about`, label: t('about') },
     { href: `${prefix}/blog`, label: t('blog') },
-    { href: `${prefix}/teaching`, label: t('teaching') },
-    { href: `${prefix}/books`, label: t('books') },
   ]
 
   useEffect(() => {

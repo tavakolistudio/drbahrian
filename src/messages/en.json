@@ -3,8 +3,6 @@
     "home": "Home",
     "about": "About",
     "blog": "Articles",
-    "teaching": "Teaching & Research",
-    "books": "Books",
     "reserve": "Book Appointment",
     "contact": "Contact",
     "menuOpen": "Open menu",
@@ -48,8 +46,6 @@
     "sections": {
       "education": "Education",
       "clinical": "Clinical Practice",
-      "teaching": "University Teaching",
-      "research": "Research Areas",
       "writing": "Writing Areas",
       "contact": "Contact Information",
       "license": "License Number"
@@ -91,20 +87,6 @@
       "next": "Next",
       "page": "Page"
     }
-  },
-  "teaching": {
-    "title": "Teaching & Research",
-    "metaDescription": "Academic teaching and research by Dr. Maryam Bahrian in the field of psychology",
-    "teaching": "University Teaching",
-    "research": "Research",
-    "courses": "Courses Taught",
-    "publications": "Academic Publications"
-  },
-  "books": {
-    "title": "Books & Writings",
-    "metaDescription": "Books and written works by Dr. Maryam Bahrian",
-    "published": "Published",
-    "upcoming": "Upcoming"
   },
   "contact": {
     "title": "Contact",

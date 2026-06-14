@@ -12,8 +12,6 @@ export function Footer({ locale }: { locale: Locale }) {
     { href: `${prefix}/`, label: t('nav.home') },
     { href: `${prefix}/about`, label: t('nav.about') },
     { href: `${prefix}/blog`, label: t('nav.blog') },
-    { href: `${prefix}/teaching`, label: t('nav.teaching') },
-    { href: `${prefix}/books`, label: t('nav.books') },
     { href: `${prefix}/contact`, label: t('nav.contact') },
   ]
 

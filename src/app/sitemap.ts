@@ -15,14 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, priority: 1.0 },
     { url: `${baseUrl}/about`, priority: 0.8 },
     { url: `${baseUrl}/blog`, priority: 0.9 },
-    { url: `${baseUrl}/teaching`, priority: 0.7 },
-    { url: `${baseUrl}/books`, priority: 0.7 },
     { url: `${baseUrl}/contact`, priority: 0.6 },
     { url: `${baseUrl}/en`, priority: 0.9 },
     { url: `${baseUrl}/en/about`, priority: 0.7 },
     { url: `${baseUrl}/en/blog`, priority: 0.8 },
-    { url: `${baseUrl}/en/teaching`, priority: 0.6 },
-    { url: `${baseUrl}/en/books`, priority: 0.6 },
     { url: `${baseUrl}/en/contact`, priority: 0.5 },
   ]
 

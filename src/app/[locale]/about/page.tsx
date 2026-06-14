@@ -39,14 +39,6 @@ export default async function AboutPage({ params }: Props) {
           'کارشناسی روان‌شناسی',
         ],
         clinical: `فعالیت درمانی دکتر بهریان بر مبنای رویکرد روانکاوی و روان‌پویایی است. ایشان با مراجعانی کار می‌کنند که با مسائلی مانند اضطراب، افسردگی، بحران هویت، روابط، سوگ و آسیب‌های روانی دست‌وپنجه نرم می‌کنند.`,
-        teaching: `دکتر بهریان سال‌هاست در دانشگاه تدریس می‌کنند. دروس ایشان شامل روان‌شناسی عمومی، روانکاوی، روان‌شناسی شخصیت و روان‌شناسی اجتماعی می‌شود.`,
-        research: [
-          'روانکاوی و فرهنگ',
-          'روانکاوی و ادبیات فارسی',
-          'بدن، میل و سوبژکتیویته',
-          'سوگ و فقدان در متون روانکاوی',
-          'روانکاوی و هویت جنسی',
-        ],
         writing: [
           'جستارهای روانکاوانه',
           'نقد فیلم و ادبیات از منظر روانکاوی',
@@ -64,14 +56,6 @@ Her writings stand at the intersection of psychoanalysis, culture, language, lit
           'Bachelor\'s in Psychology',
         ],
         clinical: `Dr. Bahrian's clinical practice is grounded in psychoanalytic and psychodynamic approaches. She works with individuals dealing with anxiety, depression, identity crises, relationship issues, grief, and psychological trauma.`,
-        teaching: `Dr. Bahrian has been teaching at the university level for many years. Her courses include General Psychology, Psychoanalysis, Personality Psychology, and Social Psychology.`,
-        research: [
-          'Psychoanalysis and Culture',
-          'Psychoanalysis and Persian Literature',
-          'Body, Desire and Subjectivity',
-          'Grief and Loss in Psychoanalytic Literature',
-          'Psychoanalysis and Gender Identity',
-        ],
         writing: [
           'Psychoanalytic essays',
           'Psychoanalytic film and literary criticism',
@@ -141,33 +125,6 @@ Her writings stand at the intersection of psychoanalysis, culture, language, lit
             {t('about.sections.clinical')}
           </h2>
           <p className="text-[var(--text-secondary)] leading-loose">{sections.clinical}</p>
-        </section>
-
-        <div className="h-px bg-[var(--border)] mb-10" />
-
-        {/* Teaching */}
-        <section className="mb-10">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-4">
-            {t('about.sections.teaching')}
-          </h2>
-          <p className="text-[var(--text-secondary)] leading-loose">{sections.teaching}</p>
-        </section>
-
-        <div className="h-px bg-[var(--border)] mb-10" />
-
-        {/* Research */}
-        <section className="mb-10">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-4">
-            {t('about.sections.research')}
-          </h2>
-          <ul className="space-y-2">
-            {sections.research.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-[var(--text-secondary)]">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
         </section>
 
         <div className="h-px bg-[var(--border)] mb-10" />
