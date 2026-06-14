@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { ContactForm } from '@/components/contact/ContactForm'
 import type { Locale } from '@/types'
-import { Mail, Send } from 'lucide-react'
+import { Mail, Send, Instagram } from 'lucide-react'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -61,6 +61,20 @@ export default async function ContactPage({ params }: Props) {
               <p className="text-xs text-[var(--text-muted)] mb-0.5">{t('contact.telegram')}</p>
               <p className="text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                 @psychofreepen
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://instagram.com/dr.maryam.bahrian"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 p-4 border border-[var(--border)] rounded-sm hover:border-[var(--accent)] transition-colors group"
+          >
+            <Instagram size={18} className="text-[var(--accent)]" />
+            <div>
+              <p className="text-xs text-[var(--text-muted)] mb-0.5">اینستاگرام</p>
+              <p className="text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                @dr.maryam.bahrian
               </p>
             </div>
           </a>
