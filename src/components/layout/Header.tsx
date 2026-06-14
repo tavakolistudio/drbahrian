@@ -66,8 +66,8 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="دکتر مریم بهریان"
-              width={40}
-              height={40}
+              width={56}
+              height={56}
               className="object-contain"
             />
             <div className="flex flex-col leading-none">

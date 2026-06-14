@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import type { Locale } from '@/types'
 import { Mail, Send, Instagram } from 'lucide-react'
@@ -21,8 +22,15 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href={`${prefix}/`} className="block mb-2">
-              <span className="text-base font-semibold text-[#1d1d1f] tracking-[-0.02em]">
+            <Link href={`${prefix}/`} className="flex items-center gap-2 mb-2 group">
+              <Image
+                src="/logo.png"
+                alt="دکتر مریم بهریان"
+                width={48}
+                height={48}
+                className="object-contain"
+              />
+              <span className="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
                 {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
               </span>
             </Link>
