@@ -18,23 +18,20 @@ export function Footer({ locale }: { locale: Locale }) {
   ]
 
   return (
-    <footer className="mt-24 border-t border-[#e4f0f1] bg-[#283338]">
+    <footer className="mt-24 border-t border-white/[0.06] bg-black">
       <div className="site-container py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href={`${prefix}/`} className="block mb-3">
-              <span className="text-base font-semibold text-white">
+            <Link href={`${prefix}/`} className="block mb-2">
+              <span className="text-base font-semibold text-white tracking-[-0.02em]">
                 {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
               </span>
             </Link>
-            <p
-              className="text-[10px] text-[#65b8a2] uppercase tracking-[0.059em] mb-3"
-              style={{ fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace' }}
-            >
+            <p className="text-[10px] text-[#8052ff] uppercase tracking-[0.05em] mb-4">
               {locale === 'fa' ? 'روان‌شناس بالینی' : 'Clinical Psychologist'}
             </p>
-            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
+            <p className="text-sm text-[#9a9a9a] leading-relaxed max-w-xs" style={{ letterSpacing: '0.025em' }}>
               {locale === 'fa'
                 ? 'روان‌شناس بالینی، درمان‌گر، نویسنده و مدرس دانشگاه'
                 : 'Clinical Psychologist, Psychotherapist, Author & Lecturer'}
@@ -43,19 +40,13 @@ export function Footer({ locale }: { locale: Locale }) {
 
           {/* Quick links */}
           <div>
-            <h3
-              className="text-[11px] font-medium uppercase tracking-[0.059em] text-[#a2cbcd] mb-4"
-              style={{ fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace' }}
-            >
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-4">
               {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-2">
               {links.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
-                  >
+                  <Link href={l.href} className="text-sm text-[#9a9a9a] hover:text-white transition-colors">
                     {l.label}
                   </Link>
                 </li>
@@ -65,17 +56,14 @@ export function Footer({ locale }: { locale: Locale }) {
 
           {/* Contact */}
           <div>
-            <h3
-              className="text-[11px] font-medium uppercase tracking-[0.059em] text-[#a2cbcd] mb-4"
-              style={{ fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace' }}
-            >
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-4">
               {t('footer.contactInfo')}
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:bahriyanmaryam@gmail.com"
-                  className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm text-[#9a9a9a] hover:text-white transition-colors"
                 >
                   <Mail size={14} />
                   bahriyanmaryam@gmail.com
@@ -86,7 +74,7 @@ export function Footer({ locale }: { locale: Locale }) {
                   href="https://t.me/psychofreepen"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm text-[#9a9a9a] hover:text-white transition-colors"
                 >
                   <Send size={14} />
                   @psychofreepen
@@ -96,10 +84,9 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-white/40 tracking-[0.038em]"
-          style={{ fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace' }}>
+        <div className="mt-10 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-[#9a9a9a] tracking-[0.038em] uppercase">
           <span>
-            {locale === 'fa' ? `© ${year} دکتر مریم بهریان` : `© ${year} DR. MARYAM BAHRIAN`}
+            {locale === 'fa' ? `© ${year} دکتر مریم بهریان` : `© ${year} Dr. Maryam Bahrian`}
             {' — '}
             {t('footer.rights')}
           </span>

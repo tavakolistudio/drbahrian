@@ -13,31 +13,10 @@ export function LatestPosts({ posts, locale }: LatestPostsProps) {
   const prefix = `/${locale}`
 
   return (
-    <section className="py-[88px] bg-[#f2f8f7]">
+    <section className="py-[60px] bg-black">
       <div className="site-container">
-        {/* Section header */}
-        <div className="flex items-center justify-between mb-12">
-          <p
-            className="flex items-center gap-2"
-            style={{
-              fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace',
-              fontSize: '13px',
-              fontWeight: 600,
-              letterSpacing: '0.059em',
-              textTransform: 'uppercase',
-              color: '#283338',
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-block',
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: '#1c5d5f',
-                flexShrink: 0,
-              }}
-            />
+        <div className="flex items-center justify-between mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.05em] text-[#9a9a9a]">
             {t('title')}
           </p>
           <Button href={`${prefix}/blog`} variant="ghost" size="sm">

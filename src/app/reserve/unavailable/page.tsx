@@ -11,13 +11,13 @@
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="/reserve"
-          className="inline-block px-6 py-2.5 bg-[#1c5d5f] text-white text-sm font-medium rounded-[48px] hover:bg-[#156152] transition"
+          className="inline-block px-6 py-2.5 bg-[#8052ff] text-white text-sm font-medium rounded-[48px] hover:bg-[#6a3de8] transition"
         >
           انتخاب وقت دیگر
         </a>
         <a
           href="/"
-          className="inline-block px-6 py-2.5 border border-[#e4f0f1] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[#e4f0f1] transition"
+          className="inline-block px-6 py-2.5 border border-[rgba(255,255,255,0.06)] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[rgba(255,255,255,0.06)] transition"
         >
           بازگشت به صفحه اصلی
         </a>
@@ -25,4 +25,5 @@
     </div>
   )
 }
+
 

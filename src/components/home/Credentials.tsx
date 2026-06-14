@@ -3,7 +3,7 @@ import type { Locale } from '@/types'
 import { GraduationCap, BookOpen, Microscope, Heart } from 'lucide-react'
 
 const icons = [GraduationCap, BookOpen, Microscope, Heart]
-const iconColors = ['#1c5d5f', '#16325a', '#65b8a2', '#1c5d5f']
+const iconColors = ['#8052ff', '#ffb829', '#15846e', '#8052ff']
 
 export function Credentials({ locale }: { locale: Locale }) {
   const t = useTranslations('home.credentials')
@@ -11,49 +11,36 @@ export function Credentials({ locale }: { locale: Locale }) {
   const isRTL = locale === 'fa'
 
   return (
-    <section className="py-[88px] bg-[#f2f8f7]">
+    <section className="py-[60px] bg-black">
       <div className="site-container">
-        <p
-          className="flex items-center gap-2 mb-12"
-          style={{
-            fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace',
-            fontSize: '13px',
-            fontWeight: 600,
-            letterSpacing: '0.059em',
-            textTransform: 'uppercase',
-            color: '#283338',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#65b8a2',
-              flexShrink: 0,
-            }}
-          />
+        <p className="text-xs font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-10">
           {t('title')}
         </p>
-
-        {/* Stat-banner style strip */}
-        <div className="border border-[#e4f0f1] rounded-[12px] divide-y divide-[#e4f0f1] md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:divide-x md:divide-[#e4f0f1]">
+        <div
+          className="rounded-[24px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x"
+          style={{
+            border: '1px solid rgba(255,255,255,0.06)',
+            divideColor: 'rgba(255,255,255,0.06)',
+          }}
+        >
           {items.map((item, i) => {
             const Icon = icons[i % icons.length]
             return (
-              <div key={i} className="flex flex-col gap-4 p-6 bg-[#f2f8f7]">
+              <div
+                key={i}
+                className="flex flex-col gap-4 p-6"
+                style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+              >
                 <div
                   className="w-9 h-9 flex items-center justify-center rounded-full"
-                  style={{ background: 'rgba(28,93,95,0.08)' }}
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
-                  <Icon size={18} strokeWidth={1.5} style={{ color: iconColors[i % iconColors.length] }} />
+                  <Icon size={16} strokeWidth={1.5} style={{ color: iconColors[i % iconColors.length] }} />
                 </div>
                 <p
-                  className="text-sm leading-relaxed"
+                  className="text-sm text-[#9a9a9a]"
                   style={{
-                    color: '#333333',
-                    fontWeight: isRTL ? 400 : 400,
+                    letterSpacing: isRTL ? '0.01em' : '0.025em',
                     lineHeight: isRTL ? '2' : '1.7',
                   }}
                 >

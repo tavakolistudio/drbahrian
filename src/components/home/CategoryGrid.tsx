@@ -30,29 +30,9 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
   const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
 
   return (
-    <section className="py-[88px] bg-[#f2e8e2]">
+    <section className="py-[60px] bg-black">
       <div className="site-container">
-        <p
-          className="flex items-center gap-2 mb-12"
-          style={{
-            fontFamily: 'var(--font-ibm-plex-mono), ui-monospace, monospace',
-            fontSize: '13px',
-            fontWeight: 600,
-            letterSpacing: '0.059em',
-            textTransform: 'uppercase',
-            color: '#283338',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: '#d6aec1',
-              flexShrink: 0,
-            }}
-          />
+        <p className="text-xs font-semibold uppercase tracking-[0.05em] text-[#9a9a9a] mb-10">
           {t('title')}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -60,12 +40,23 @@ export function CategoryGrid({ locale }: { locale: Locale }) {
             <Link
               key={cat.slug}
               href={`${prefix}/blog/category/${cat.slug}`}
-              className="group block p-6 bg-[#f2e8e2] border border-[#d6aec1]/40 hover:bg-[#e4f0f1] hover:border-[#a2cbcd] transition-colors duration-200 rounded-[12px]"
+              className="group block p-5 transition-all duration-200 rounded-[24px]"
+              style={{ border: '1px solid rgba(255,255,255,0.06)' }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(128,82,255,0.3)'
+                el.style.background = 'rgba(128,82,255,0.04)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'rgba(255,255,255,0.06)'
+                el.style.background = 'transparent'
+              }}
             >
-              <h3 className="text-sm font-medium text-[#283338] group-hover:text-[#1c5d5f] transition-colors mb-2 leading-snug">
+              <h3 className="text-sm font-medium text-[#bdbdbd] group-hover:text-white transition-colors mb-2 leading-snug">
                 {cat.label}
               </h3>
-              <p className="text-xs text-[#5a7074] leading-relaxed">{cat.description}</p>
+              <p className="text-xs text-[#9a9a9a] leading-relaxed">{cat.description}</p>
             </Link>
           ))}
         </div>

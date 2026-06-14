@@ -2,8 +2,10 @@
 import { useEffect, useRef } from 'react'
 
 const PALETTE = [
-  '#0e4749', '#1c5d5f', '#1c5d5f', '#1c5d5f', '#2a7779',
-  '#65b8a2', '#16325a', '#16325a', '#156152',
+  '#8052ff', '#8052ff', '#8052ff', '#8052ff',
+  '#ffb829', '#ffb829',
+  '#15846e',
+  '#ffffff', '#ffffff',
 ]
 type Shape = 'circle' | 'triangle' | 'diamond' | 'square'
 const SHAPES: Shape[] = ['circle', 'triangle', 'diamond', 'square']
@@ -64,7 +66,7 @@ function buildParticles(w: number, h: number, rtl: boolean): Particle[] {
           ? 3.2 + Math.random() * 3.8   // outline: 3.2–7.0px
           : 2.0 + Math.random() * 2.8,   // interior: 2.0–4.8px
         color: isCerebellum
-          ? ['#16325a', '#283338', '#0e4749'][Math.floor(Math.random() * 3)]
+          ? ['#ffb829', '#8052ff', '#15846e'][Math.floor(Math.random() * 3)]
           : PALETTE[Math.floor(Math.random() * PALETTE.length)],
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,

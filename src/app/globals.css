@@ -4,36 +4,27 @@
 
 @layer base {
   :root {
-    /* User Interviews palette */
-    --color-deep-teal: #1c5d5f;
-    --color-pine-shadow: #0e4749;
-    --color-sage: #65b8a2;
-    --color-lake-teal: #2a7779;
-    --color-forest-floor: #156152;
-    --color-ink-navy: #16325a;
-    --color-dusty-rose: #d6aec1;
-    --color-mint-mist: #a2cbcd;
-    --color-sea-foam: #cae1e2;
-    --color-paper-white: #f2f8f7;
-    --color-card-mint: #e4f0f1;
-    --color-blush-sand: #f2e8e2;
-    --color-charcoal-navy: #283338;
-    --color-slate: #333333;
-    --color-soft-black: #1a1a1a;
-    --color-illustration-ink: #231e21;
+    /* Dala palette */
+    --color-void: #000000;
+    --color-bone: #ffffff;
+    --color-ash: #bdbdbd;
+    --color-smoke: #9a9a9a;
+    --color-plum-voltage: #8052ff;
+    --color-amber-spark: #ffb829;
+    --color-lichen: #15846e;
 
     /* Semantic tokens */
-    --bg: #f2f8f7;
-    --surface: #e4f0f1;
-    --border: #e4f0f1;
-    --border-dark: #a2cbcd;
-    --text-primary: #283338;
-    --text-secondary: #333333;
-    --text-muted: #5a7074;
-    --accent: #1c5d5f;
-    --accent-hover: #156152;
-    --accent-light: rgba(28, 93, 95, 0.1);
-    --accent-text: #0e4749;
+    --bg: #000000;
+    --surface: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.1);
+    --border-dark: rgba(255, 255, 255, 0.18);
+    --text-primary: #ffffff;
+    --text-secondary: #bdbdbd;
+    --text-muted: #9a9a9a;
+    --accent: #8052ff;
+    --accent-hover: #6a3de8;
+    --accent-light: rgba(128, 82, 255, 0.15);
+    --accent-text: #8052ff;
   }
 
   * { box-sizing: border-box; }
@@ -46,11 +37,10 @@
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--text-primary);
+    background-color: #000000;
+    color: #ffffff;
   }
 
-  /* Persian text */
   [dir="rtl"] body,
   [dir="rtl"] p,
   [dir="rtl"] li,
@@ -62,12 +52,12 @@
   }
 
   ::selection {
-    background-color: rgba(28, 93, 95, 0.25);
+    background-color: rgba(128, 82, 255, 0.35);
     color: #ffffff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid #8052ff;
     outline-offset: 2px;
     border-radius: 24px;
   }
@@ -79,28 +69,28 @@
   }
 
   .prose-article {
-    @apply prose prose-lg max-w-none;
-    color: var(--text-secondary);
+    @apply prose prose-invert prose-lg max-w-none;
+    color: #bdbdbd;
   }
 
   .prose-article h1,
   .prose-article h2,
   .prose-article h3,
   .prose-article h4 {
-    color: var(--text-primary);
-    font-weight: 400;
-    font-family: var(--font-source-serif), Georgia, serif;
+    color: #ffffff;
+    font-weight: 200;
+    letter-spacing: -0.03em;
   }
 
-  .prose-article a { color: var(--accent-text); }
+  .prose-article a { color: #8052ff; }
 
   .prose-article blockquote {
-    border-inline-start-color: var(--accent);
+    border-inline-start-color: #8052ff;
     border-inline-end: none;
     border-left: none;
     border-right: none;
     padding-inline-start: 1.5rem;
-    color: var(--text-secondary);
+    color: #bdbdbd;
     font-style: normal;
   }
 
@@ -111,33 +101,10 @@
   }
 
   [dir="rtl"] .prose-article blockquote {
-    border-right: 3px solid var(--accent);
+    border-right: 3px solid #8052ff;
     border-left: none;
     padding-right: 1.5rem;
     padding-left: 0;
-  }
-
-  /* Section eyebrow — IBM Plex Mono uppercase */
-  .eyebrow {
-    font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.059em;
-    text-transform: uppercase;
-    color: var(--color-charcoal-navy);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--color-deep-teal);
-    flex-shrink: 0;
   }
 }
 

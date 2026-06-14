@@ -69,20 +69,20 @@ function StepBar({ current }: { current: number }) {
             <div
               className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
                 i < current
-                  ? 'bg-[#1c5d5f] text-white'
+                  ? 'bg-[#8052ff] text-white'
                   : i === current
-                  ? 'bg-[#1c5d5f] text-white ring-4 ring-[#1c5d5f]/20'
-                  : 'bg-[#e4f0f1] text-[#9a9a9a]'
+                  ? 'bg-[#8052ff] text-white ring-4 ring-[#8052ff]/20'
+                  : 'bg-[rgba(255,255,255,0.06)] text-[#9a9a9a]'
               }`}
             >
               {i < current ? '✓' : i + 1}
             </div>
-            <span className={`text-[10px] font-medium whitespace-nowrap hidden sm:block ${i <= current ? 'text-[#1c5d5f]' : 'text-[#9a9a9a]'}`}>
+            <span className={`text-[10px] font-medium whitespace-nowrap hidden sm:block ${i <= current ? 'text-[#8052ff]' : 'text-[#9a9a9a]'}`}>
               {label}
             </span>
           </div>
           {i < STEPS.length - 1 && (
-            <div className={`flex-1 h-px mx-2 mb-4 ${i < current ? 'bg-[#1c5d5f]' : 'bg-[#e4f0f1]'}`} />
+            <div className={`flex-1 h-px mx-2 mb-4 ${i < current ? 'bg-[#8052ff]' : 'bg-[rgba(255,255,255,0.06)]'}`} />
           )}
         </div>
       ))}
@@ -105,9 +105,9 @@ function Step1Mode({ onNext }: { onNext: (mode: Mode) => void }) {
           <button
             key={opt.value}
             onClick={() => onNext(opt.value)}
-            className="text-right border border-[#e4f0f1] rounded-[12px] p-6 hover:border-[#1c5d5f] hover:bg-[#e4f0f1] transition group"
+            className="text-right border border-[rgba(255,255,255,0.06)] rounded-[12px] p-6 hover:border-[#8052ff] hover:bg-[rgba(255,255,255,0.06)] transition group"
           >
-            <div className="text-2xl mb-3 text-[#1c5d5f] group-hover:scale-110 transition-transform inline-block">{opt.icon}</div>
+            <div className="text-2xl mb-3 text-[#8052ff] group-hover:scale-110 transition-transform inline-block">{opt.icon}</div>
             <div className="font-semibold text-[#1a1a1a] mb-1">{opt.title}</div>
             <div className="text-sm text-[#6b6b6b]">{opt.desc}</div>
           </button>
@@ -135,15 +135,15 @@ function Step2Location({
       <h2 className="text-xl font-semibold text-[#1a1a1a] mb-2">کشور و منطقه زمانی شما</h2>
       <p className="text-sm text-[#6b6b6b] mb-6">زمان وقت‌ها به‌صورت همزمان به وقت ایران و وقت محلی شما نشان داده می‌شود.</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-80 overflow-y-auto border border-[#e4f0f1] rounded-[48px] p-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-80 overflow-y-auto border border-[rgba(255,255,255,0.06)] rounded-[48px] p-3 mb-6">
         {COUNTRIES.map((c) => (
           <button
             key={c.nameEn}
             onClick={() => setSelected(c.nameEn)}
             className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition text-right ${
               selected === c.nameEn
-                ? 'bg-[#1c5d5f] text-white'
-                : 'hover:bg-[#e4f0f1] text-[#1a1a1a]'
+                ? 'bg-[#8052ff] text-white'
+                : 'hover:bg-[rgba(255,255,255,0.06)] text-[#1a1a1a]'
             }`}
           >
             <span className="text-lg">{c.flag}</span>
@@ -153,22 +153,22 @@ function Step2Location({
       </div>
 
       {country && (
-        <div className="text-xs text-[#6b6b6b] mb-6 bg-[#e4f0f1] rounded-lg px-4 py-3">
-          منطقه زمانی: <span className="font-medium text-[#1c5d5f]" dir="ltr">{country.timezone}</span>
+        <div className="text-xs text-[#6b6b6b] mb-6 bg-[rgba(255,255,255,0.06)] rounded-lg px-4 py-3">
+          منطقه زمانی: <span className="font-medium text-[#8052ff]" dir="ltr">{country.timezone}</span>
         </div>
       )}
 
       <div className="flex gap-3">
         <button
           onClick={onBack}
-          className="px-5 py-2.5 border border-[#e4f0f1] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[#e4f0f1] transition"
+          className="px-5 py-2.5 border border-[rgba(255,255,255,0.06)] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[rgba(255,255,255,0.06)] transition"
         >
           بازگشت
         </button>
         <button
           disabled={!country}
           onClick={() => country && onNext(country.name, country.timezone)}
-          className="px-6 py-2.5 bg-[#1c5d5f] text-white text-sm font-medium rounded-[48px] hover:bg-[#156152] transition disabled:opacity-40"
+          className="px-6 py-2.5 bg-[#8052ff] text-white text-sm font-medium rounded-[48px] hover:bg-[#6a3de8] transition disabled:opacity-40"
         >
           ادامه
         </button>
@@ -224,12 +224,12 @@ function Step3Slot({
 
       {loading ? (
         <div className="space-y-2 animate-pulse">
-          {[...Array(3)].map((_, i) => <div key={i} className="h-12 bg-[#e4f0f1] rounded-[48px]" />)}
+          {[...Array(3)].map((_, i) => <div key={i} className="h-12 bg-[rgba(255,255,255,0.06)] rounded-[48px]" />)}
         </div>
       ) : dates.length === 0 ? (
         <div className="text-center py-10">
           <p className="text-[#6b6b6b] text-sm mb-4">در حال حاضر وقت خالی موجود نیست.</p>
-          <a href="/reserve/unavailable" className="text-sm text-[#1c5d5f] underline">ثبت درخواست اطلاع‌رسانی</a>
+          <a href="/reserve/unavailable" className="text-sm text-[#8052ff] underline">ثبت درخواست اطلاع‌رسانی</a>
         </div>
       ) : (
         <>
@@ -246,8 +246,8 @@ function Step3Slot({
                     onClick={() => { setSelectedDate(date); setSelectedSlot(null) }}
                     className={`px-4 py-2.5 text-sm rounded-[48px] border transition ${
                       selectedDate === date
-                        ? 'bg-[#1c5d5f] text-white border-[#1c5d5f]'
-                        : 'border-[#e4f0f1] text-[#1a1a1a] hover:border-[#1c5d5f] hover:bg-[#e4f0f1]'
+                        ? 'bg-[#8052ff] text-white border-[#8052ff]'
+                        : 'border-[rgba(255,255,255,0.06)] text-[#1a1a1a] hover:border-[#8052ff] hover:bg-[rgba(255,255,255,0.06)]'
                     }`}
                   >
                     {displayDate}
@@ -271,8 +271,8 @@ function Step3Slot({
                       onClick={() => setSelectedSlot(slot.id)}
                       className={`px-4 py-3 rounded-[48px] border text-sm transition text-right ${
                         selectedSlot === slot.id
-                          ? 'bg-[#1c5d5f] text-white border-[#1c5d5f]'
-                          : 'border-[#e4f0f1] text-[#1a1a1a] hover:border-[#1c5d5f] hover:bg-[#e4f0f1]'
+                          ? 'bg-[#8052ff] text-white border-[#8052ff]'
+                          : 'border-[rgba(255,255,255,0.06)] text-[#1a1a1a] hover:border-[#8052ff] hover:bg-[rgba(255,255,255,0.06)]'
                       }`}
                     >
                       <div className="font-medium" dir="ltr">{iranTime} تهران</div>
@@ -293,14 +293,14 @@ function Step3Slot({
       <div className="flex gap-3 mt-4">
         <button
           onClick={onBack}
-          className="px-5 py-2.5 border border-[#e4f0f1] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[#e4f0f1] transition"
+          className="px-5 py-2.5 border border-[rgba(255,255,255,0.06)] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[rgba(255,255,255,0.06)] transition"
         >
           بازگشت
         </button>
         <button
           disabled={!selectedSlot}
           onClick={() => selectedSlot && onNext(selectedSlot)}
-          className="px-6 py-2.5 bg-[#1c5d5f] text-white text-sm font-medium rounded-[48px] hover:bg-[#156152] transition disabled:opacity-40"
+          className="px-6 py-2.5 bg-[#8052ff] text-white text-sm font-medium rounded-[48px] hover:bg-[#6a3de8] transition disabled:opacity-40"
         >
           ادامه
         </button>
@@ -386,7 +386,7 @@ function Step4Form({
 
         <div className="grid grid-cols-2 gap-3">
           <Field label="کشور">
-            <input type="text" value={form.country} readOnly className="input bg-[#e4f0f1] cursor-not-allowed" />
+            <input type="text" value={form.country} readOnly className="input bg-[rgba(255,255,255,0.06)] cursor-not-allowed" />
           </Field>
           <Field label="شهر *">
             <input
@@ -433,8 +433,8 @@ function Step4Form({
                 onClick={() => update('preferredContactMethod', m)}
                 className={`flex-1 py-2 text-sm rounded-lg border transition font-medium ${
                   form.preferredContactMethod === m
-                    ? 'bg-[#1c5d5f] text-white border-[#1c5d5f]'
-                    : 'border-[#e4f0f1] text-[#4a4a4a] hover:bg-[#e4f0f1]'
+                    ? 'bg-[#8052ff] text-white border-[#8052ff]'
+                    : 'border-[rgba(255,255,255,0.06)] text-[#4a4a4a] hover:bg-[rgba(255,255,255,0.06)]'
                 }`}
               >
                 {m === 'WHATSAPP' ? 'واتساپ' : m === 'TELEGRAM' ? 'تلگرام' : 'بله'}
@@ -455,8 +455,8 @@ function Step4Form({
                 onClick={() => update('clientType', opt.value)}
                 className={`flex-1 py-2 text-sm rounded-lg border transition ${
                   form.clientType === opt.value
-                    ? 'bg-[#1c5d5f] text-white border-[#1c5d5f]'
-                    : 'border-[#e4f0f1] text-[#4a4a4a] hover:bg-[#e4f0f1]'
+                    ? 'bg-[#8052ff] text-white border-[#8052ff]'
+                    : 'border-[rgba(255,255,255,0.06)] text-[#4a4a4a] hover:bg-[rgba(255,255,255,0.06)]'
                 }`}
               >
                 {opt.label}
@@ -493,14 +493,14 @@ function Step4Form({
         <button
           type="button"
           onClick={onBack}
-          className="px-5 py-2.5 border border-[#e4f0f1] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[#e4f0f1] transition"
+          className="px-5 py-2.5 border border-[rgba(255,255,255,0.06)] text-[#4a4a4a] text-sm rounded-[48px] hover:bg-[rgba(255,255,255,0.06)] transition"
         >
           بازگشت
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="flex-1 py-2.5 bg-[#1c5d5f] text-white text-sm font-semibold rounded-[48px] hover:bg-[#156152] transition disabled:opacity-60"
+          className="flex-1 py-2.5 bg-[#8052ff] text-white text-sm font-semibold rounded-[48px] hover:bg-[#6a3de8] transition disabled:opacity-60"
         >
           {submitting ? 'در حال ثبت درخواست...' : 'ثبت درخواست'}
         </button>
@@ -565,7 +565,7 @@ export default function ReservePage() {
           width: 100%;
           padding: 0.625rem 0.75rem;
           font-size: 0.875rem;
-          border: 1px solid #e4f0f1;
+          border: 1px solid rgba(255,255,255,0.06);
           border-radius: 0.75rem;
           background: white;
           outline: none;
@@ -573,14 +573,15 @@ export default function ReservePage() {
           font-family: inherit;
         }
         .input:focus {
-          border-color: #1c5d5f;
+          border-color: #8052ff;
           box-shadow: 0 0 0 3px rgba(28, 93, 95, 0.15);
         }
         .input:read-only {
-          background: #e4f0f1;
+          background: rgba(255,255,255,0.06);
         }
       `}</style>
     </div>
   )
 }
+
 
