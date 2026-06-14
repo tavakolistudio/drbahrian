@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: Props) {
 
   const sections = isRTL
     ? {
-        intro: `دکتر مریم بهریان روان‌شناس بالینی، درمان‌گر، نویسنده، مدرس دانشگاه و پژوهشگر حوزه روان است. تحصیلات ایشان در حوزه روان‌شناسی بالینی و عمومی تا مقطع دکتری ادامه یافته است.
+        intro: `دکتر مریم بهریان روان‌شناس بالینی، درمان‌گر، نویسنده و پژوهشگر حوزه روان است. تحصیلات ایشان در حوزه روان‌شناسی بالینی و عمومی تا مقطع دکتری ادامه یافته است.
 
 نوشته‌های دکتر بهریان در تلاقی روانکاوی، فرهنگ، زبان، ادبیات و سیاست قرار دارند. ایشان به‌ویژه به پرسش‌هایی علاقه دارند که روانکاوی در مواجهه با واقعیت‌های فرهنگی و اجتماعی مطرح می‌کند.`,
         education: [
@@ -47,7 +47,7 @@ export default async function AboutPage({ params }: Props) {
         ],
       }
     : {
-        intro: `Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, author, university lecturer, and researcher in the field of psychology. She holds a PhD in Clinical Psychology and has extensive experience in both clinical practice and academic settings.
+        intro: `Dr. Maryam Bahrian is a clinical psychologist, psychotherapist, author, and researcher in the field of psychology. She holds a PhD in Clinical Psychology and has extensive experience in both clinical practice and academic settings.
 
 Her writings stand at the intersection of psychoanalysis, culture, language, literature, and politics. She is particularly interested in questions that psychoanalysis raises when confronted with cultural and social realities.`,
         education: [
