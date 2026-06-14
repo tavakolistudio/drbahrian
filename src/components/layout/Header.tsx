@@ -71,7 +71,7 @@ export function Header() {
               className="object-contain"
             />
             <div className="flex flex-col leading-none">
-              <span className="text-sm font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
+              <span className="text-base font-semibold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors tracking-[-0.02em]">
                 {locale === 'fa' ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
               </span>
               <span className="text-[10px] text-[#707070] tracking-[0.04em] uppercase">
