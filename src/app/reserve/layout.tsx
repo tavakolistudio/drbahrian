@@ -1,3 +1,5 @@
+'use client'
+
 import { Vazirmatn } from 'next/font/google'
 
 const vazirmatn = Vazirmatn({
