@@ -61,7 +61,7 @@ export function Hero({ locale }: { locale: Locale }) {
         {/* CTA pills */}
         <div className="flex flex-wrap justify-center gap-3">
           <Link
-            href={`${prefix}/reserve`}
+            href="/reserve"
             className="transition-opacity hover:opacity-80"
             style={{
               backgroundColor: '#0071e3',
