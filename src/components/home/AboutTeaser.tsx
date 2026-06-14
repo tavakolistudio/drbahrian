@@ -37,10 +37,10 @@ export function AboutTeaser({ locale }: { locale: Locale }) {
                   fontFamily: isRTL
                     ? 'var(--font-vazir), Tahoma, sans-serif'
                     : 'var(--font-inter), system-ui, sans-serif',
-                  fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
-                  fontWeight: isRTL ? 700 : 700,
-                  letterSpacing: isRTL ? '-0.01em' : '-0.022em',
-                  lineHeight: isRTL ? 1.4 : 1.1,
+                  fontSize: isRTL ? 'clamp(2rem, 4vw, 3.2rem)' : 'clamp(1.8rem, 3.5vw, 3rem)',
+                  fontWeight: 700,
+                  letterSpacing: isRTL ? '-0.02em' : '-0.022em',
+                  lineHeight: isRTL ? 1.45 : 1.1,
                 }}
               >
                 {t('title')}

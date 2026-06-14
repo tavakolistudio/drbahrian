@@ -90,6 +90,15 @@ export function Footer({ locale }: { locale: Locale }) {
             {' — '}
             {t('footer.rights')}
           </span>
+          <a
+            href="https://tavakolistudio.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#707070] hover:text-[#0066cc] transition-colors normal-case tracking-normal"
+            style={{ fontSize: '11px' }}
+          >
+            Powered by <span className="font-semibold tracking-[0.05em] uppercase">TAVAKOLISTUDIO</span>
+          </a>
         </div>
       </div>
     </footer>

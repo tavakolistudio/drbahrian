@@ -33,11 +33,11 @@ export function Hero({ locale }: { locale: Locale }) {
           className="mb-6"
           style={{
             fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-inter), system-ui, sans-serif',
-            fontSize: isRTL ? 'clamp(44px, 8vw, 80px)' : 'clamp(48px, 9vw, 96px)',
+            fontSize: isRTL ? 'clamp(52px, 9vw, 88px)' : 'clamp(48px, 9vw, 96px)',
             fontWeight: 700,
             color: '#1d1d1f',
-            letterSpacing: isRTL ? '-0.02em' : '-2.11px',
-            lineHeight: isRTL ? 1.2 : 1.04,
+            letterSpacing: isRTL ? '-0.025em' : '-2.11px',
+            lineHeight: isRTL ? 1.25 : 1.04,
           }}
         >
           {t('name')}
