@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Badge } from '@/components/ui/Badge'
 import { formatDate } from '@/lib/utils'
