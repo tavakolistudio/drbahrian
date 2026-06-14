@@ -6,7 +6,7 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
 import { getPostBySlug, getAllPostSlugs, getRelatedPosts } from '@/lib/posts'
-import { getDbPostBySlug, getDbRelatedPosts } from '@/lib/posts-db'
+import { getDbPostBySlug, getDbRelatedPosts, getAllDbPosts } from '@/lib/posts-db'
 
 export const revalidate = 60
 export const dynamicParams = true
@@ -27,12 +27,16 @@ type Props = {
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   const { locale } = params
-  return getAllPostSlugs(locale as Locale).map((slug) => ({ slug }))
+  const fileSlugs = getAllPostSlugs(locale as Locale).map((slug) => ({ slug }))
+  const dbPosts = await getAllDbPosts(locale as Locale).catch(() => [])
+  const dbSlugs = dbPosts.map((p) => ({ slug: p.slug }))
+  const seen = new Set(fileSlugs.map((s) => s.slug))
+  return [...fileSlugs, ...dbSlugs.filter((s) => !seen.has(s.slug))]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params
-  const post = getPostBySlug(slug, locale as Locale)
+  const post = getPostBySlug(slug, locale as Locale) ?? await getDbPostBySlug(slug, locale as Locale)
   if (!post) return {}
 
   const baseUrl = 'https://drmaryambahrian.ir'

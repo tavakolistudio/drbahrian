@@ -27,10 +27,14 @@ function toPost(p: DbRow): Post {
 
 export async function getDbPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
   try {
-    const p = await prisma.post.findUnique({ where: { slug_locale: { slug, locale } } })
-    if (!p || p.status !== 'PUBLISHED') return null
+    const decodedSlug = decodeURIComponent(slug)
+    const p = await prisma.post.findFirst({ where: { slug: decodedSlug, locale, status: 'PUBLISHED' } })
+    if (!p) return null
     return toPost(p)
-  } catch { return null }
+  } catch (e) {
+    console.error('[getDbPostBySlug]', e)
+    return null
+  }
 }
 
 export async function getAllDbPosts(locale: Locale): Promise<PostMeta[]> {
