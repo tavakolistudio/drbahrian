@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import type { Locale } from '@/types'
-import { Mail, Send } from 'lucide-react'
+import { Mail, Send, Instagram } from 'lucide-react'
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = useTranslations()
@@ -76,6 +76,17 @@ export function Footer({ locale }: { locale: Locale }) {
                 >
                   <Send size={14} />
                   @psychofreepen
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://instagram.com/dr.maryam.bahrian"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-[#707070] hover:text-[#1d1d1f] transition-colors"
+                >
+                  <Instagram size={14} />
+                  @dr.maryam.bahrian
                 </a>
               </li>
             </ul>

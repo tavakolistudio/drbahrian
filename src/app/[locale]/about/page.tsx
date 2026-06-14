@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { PersonSchema } from './schema'
 import type { Locale } from '@/types'
-import { Mail, Send } from 'lucide-react'
+import { Mail, Send, Instagram } from 'lucide-react'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -179,6 +179,15 @@ Her writings stand at the intersection of psychoanalysis, culture, language, lit
             >
               <Send size={16} />
               @psychofreepen
+            </a>
+            <a
+              href="https://instagram.com/dr.maryam.bahrian"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+            >
+              <Instagram size={16} />
+              @dr.maryam.bahrian
             </a>
           </div>
         </section>
