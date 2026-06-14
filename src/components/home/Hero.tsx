@@ -1,6 +1,5 @@
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Locale } from '@/types'
 
 export function Hero({ locale }: { locale: Locale }) {
@@ -12,7 +11,7 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section style={{ backgroundColor: '#f5f5f7' }} className="overflow-hidden">
       {/* Center-stack text */}
-      <div className="site-container pt-24 pb-14 text-center">
+      <div className="site-container pt-24 pb-20 text-center">
         {/* Eyebrow — specialty */}
         <p
           className="mb-5"
@@ -100,28 +99,6 @@ export function Hero({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      {/* Doctor photo — large, centered, Apple product-image style */}
-      <div className="flex justify-center px-4">
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '320px',
-            height: '420px',
-            borderRadius: '28px',
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            src="/doctor.jpg"
-            alt={isRTL ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
-            fill
-            className="object-cover object-top"
-            sizes="320px"
-            priority
-          />
-        </div>
-      </div>
     </section>
   )
 }
