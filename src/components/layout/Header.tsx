@@ -46,6 +46,9 @@ export function Header() {
 
   useEffect(() => { setOpen(false) }, [pathname])
 
+  const isHome = pathname === `${prefix}/` || pathname === '/'
+  if (isHome) return null
+
   return (
     <header
       className={cn(

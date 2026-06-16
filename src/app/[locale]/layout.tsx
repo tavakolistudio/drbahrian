@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
-import { Vazirmatn, Inter } from 'next/font/google'
+import { Vazirmatn, Inter, Instrument_Serif } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
@@ -21,6 +21,14 @@ const inter = Inter({
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '600', '700'],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-heading',
   display: 'swap',
 })
 
@@ -75,7 +83,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html
       lang={locale}
       dir={isRTL ? 'rtl' : 'ltr'}
-      className={cn(vazirmatn.variable, inter.variable)}
+      className={cn(vazirmatn.variable, inter.variable, instrumentSerif.variable)}
     >
       <body
         className={cn(

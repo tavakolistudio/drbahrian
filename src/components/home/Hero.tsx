@@ -1,6 +1,84 @@
+'use client'
+
+import { useEffect, useRef, type CSSProperties } from 'react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowUpRight, Mail, Send, Instagram } from 'lucide-react'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import type { Locale } from '@/types'
+
+const HERO_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4'
+const FADE_MS = 500
+const FADE_OUT_LEAD = 0.55
+
+function FadingVideo({ src, className, style }: { src: string; className?: string; style?: CSSProperties }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const rafRef = useRef(0)
+  const fadingOutRef = useRef(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    function fadeTo(target: number, duration: number) {
+      cancelAnimationFrame(rafRef.current)
+      const start = parseFloat(video!.style.opacity) || 0
+      const startTime = performance.now()
+      function step(now: number) {
+        const t = Math.min((now - startTime) / duration, 1)
+        video!.style.opacity = String(start + (target - start) * t)
+        if (t < 1) rafRef.current = requestAnimationFrame(step)
+      }
+      rafRef.current = requestAnimationFrame(step)
+    }
+
+    function handleCanPlay() {
+      video!.play().catch(() => {})
+      fadeTo(1, FADE_MS)
+    }
+    function handleTimeUpdate() {
+      const remaining = video!.duration - video!.currentTime
+      if (!fadingOutRef.current && remaining <= FADE_OUT_LEAD && remaining > 0) {
+        fadingOutRef.current = true
+        fadeTo(0, FADE_MS)
+      }
+    }
+    function handleEnded() {
+      video!.style.opacity = '0'
+      setTimeout(() => {
+        video!.currentTime = 0
+        video!.play().catch(() => {})
+        fadingOutRef.current = false
+        fadeTo(1, FADE_MS)
+      }, 100)
+    }
+
+    video.addEventListener('canplay', handleCanPlay)
+    video.addEventListener('timeupdate', handleTimeUpdate)
+    video.addEventListener('ended', handleEnded)
+
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      video.removeEventListener('canplay', handleCanPlay)
+      video.removeEventListener('timeupdate', handleTimeUpdate)
+      video.removeEventListener('ended', handleEnded)
+    }
+  }, [])
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      muted
+      playsInline
+      preload="auto"
+      src={src}
+      className={className}
+      style={{ opacity: 0, ...style }}
+    />
+  )
+}
 
 export function Hero({ locale }: { locale: Locale }) {
   const t = useTranslations('home.hero')
@@ -8,82 +86,112 @@ export function Hero({ locale }: { locale: Locale }) {
   const prefix = `/${locale}`
   const isRTL = locale === 'fa'
 
+  const navLinks = [
+    { href: `${prefix}/`, label: tNav('home') },
+    { href: `${prefix}/about`, label: tNav('about') },
+    { href: `${prefix}/blog`, label: tNav('blog') },
+  ]
+
+  const socialLinks = [
+    { href: 'mailto:bahriyanmaryam@gmail.com', icon: Mail, label: 'Email' },
+    { href: 'https://t.me/psychofreepen', icon: Send, label: 'Telegram' },
+    { href: 'https://instagram.com/dr.maryam.bahrian', icon: Instagram, label: 'Instagram' },
+  ]
+
   return (
-    <section style={{ backgroundColor: '#f5f5f7' }} className="overflow-hidden">
-      {/* Center-stack text */}
-      <div className="site-container pt-24 pb-20 text-center">
-        {/* Eyebrow — specialty */}
-        <p
-          className="mb-5"
+    <section className="relative min-h-screen overflow-hidden flex flex-col bg-black">
+      <FadingVideo src={HERO_VIDEO} className="absolute inset-0 w-full h-full object-cover object-bottom z-0" />
+
+      {/* Navbar */}
+      <nav className="fixed top-4 inset-x-0 z-50 px-6">
+        <div className="liquid-glass max-w-5xl mx-auto rounded-full px-4 sm:px-6 py-3 flex items-center justify-between">
+          <Link href={`${prefix}/`} className="flex items-center gap-2 flex-shrink-0">
+            <Image src="/logo.png" alt={isRTL ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'} width={32} height={32} className="object-contain" />
+            <span className="hidden sm:inline text-white font-semibold text-base">
+              {isRTL ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'}
+            </span>
+          </Link>
+
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((l) => (
+              <Link key={l.href} href={l.href} className="text-white/80 hover:text-white text-sm font-medium transition-colors">
+                {l.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <LanguageSwitcher className="text-white/80 border-white/20 hover:text-white hover:border-white/40" />
+            <Link href={`${prefix}/contact`} className="hidden sm:inline text-white/80 hover:text-white text-sm font-medium transition-colors">
+              {tNav('contact')}
+            </Link>
+            <Link href="/reserve" className="liquid-glass rounded-full px-5 py-2 text-white text-sm font-medium whitespace-nowrap">
+              {tNav('reserve')}
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero content */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
+        <h1
+          className="text-white tracking-tight"
           style={{
-            fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-inter), system-ui, sans-serif',
-            fontSize: '17px',
-            fontWeight: 400,
-            color: '#707070',
-            letterSpacing: isRTL ? '0.01em' : '-0.1px',
-            lineHeight: 1.6,
+            fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-heading), serif',
+            fontStyle: isRTL ? 'normal' : 'italic',
+            fontWeight: isRTL ? 700 : 400,
+            fontSize: isRTL ? 'clamp(2.6rem, 7vw, 5rem)' : 'clamp(3rem, 8vw, 6.5rem)',
+            lineHeight: 1.05,
+            letterSpacing: isRTL ? '-0.02em' : '-0.02em',
           }}
         >
+          {t('name')}
+        </h1>
+
+        <p className="text-white/70 text-sm md:text-base mt-5" style={{ letterSpacing: isRTL ? '0.01em' : '-0.1px' }}>
           {t('subtitle')}
         </p>
 
-        {/* Intro */}
         <p
-          className="mx-auto mb-10"
-          style={{
-            fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-inter), system-ui, sans-serif',
-            fontSize: '20px',
-            fontWeight: 300,
-            color: '#1d1d1f',
-            letterSpacing: isRTL ? '0.01em' : '-0.2px',
-            lineHeight: isRTL ? 1.9 : 1.4,
-            maxWidth: '560px',
-          }}
+          className="text-white text-sm md:text-base mt-4 max-w-xl leading-relaxed"
+          style={{ lineHeight: isRTL ? 1.9 : 1.5 }}
         >
           {t('intro')}
         </p>
 
-        {/* CTA pills */}
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           <Link
             href="/reserve"
-            className="transition-opacity hover:opacity-80"
-            style={{
-              backgroundColor: '#0071e3',
-              color: '#ffffff',
-              borderRadius: '999px',
-              padding: '12px 24px',
-              fontSize: '17px',
-              fontWeight: 400,
-              letterSpacing: isRTL ? '0.01em' : '-0.1px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-            }}
+            className="liquid-glass-strong rounded-full px-6 py-3 text-white text-sm font-medium flex items-center gap-2"
           >
             {tNav('reserve')}
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
-          <Link
-            href={`${prefix}/blog`}
-            className="transition-opacity hover:opacity-80"
-            style={{
-              backgroundColor: '#000000',
-              color: '#ffffff',
-              borderRadius: '999px',
-              padding: '12px 24px',
-              fontSize: '17px',
-              fontWeight: 400,
-              letterSpacing: isRTL ? '0.01em' : '-0.1px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-            }}
-          >
+          <Link href={`${prefix}/blog`} className="liquid-glass rounded-full px-6 py-3 text-white text-sm font-medium">
             {t('ctaPrimary')}
           </Link>
         </div>
+
+        <Link href={`${prefix}/contact`} className="text-white/60 hover:text-white text-sm mt-6 transition-colors">
+          {t('ctaSecondary')}
+        </Link>
       </div>
 
+      {/* Social icons */}
+      <div className="relative z-10 flex justify-center gap-4 pb-12">
+        {socialLinks.map(({ href, icon: Icon, label }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            aria-label={label}
+            className="liquid-glass rounded-full p-4 text-white/80 hover:text-white transition-colors"
+          >
+            <Icon className="h-5 w-5" />
+          </a>
+        ))}
+      </div>
     </section>
   )
 }

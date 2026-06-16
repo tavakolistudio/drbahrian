@@ -1,3 +1,7 @@
+'use client'
+
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import type { Locale } from '@/types'
@@ -27,26 +31,50 @@ const EN_CATEGORIES = [
 export function CategoryGrid({ locale }: { locale: Locale }) {
   const t = useTranslations('home.categories')
   const prefix = `/${locale}`
-  const categories = locale === 'fa' ? FA_CATEGORIES : EN_CATEGORIES
+  const isRTL = locale === 'fa'
+  const categories = isRTL ? FA_CATEGORIES : EN_CATEGORIES
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-[80px] bg-[#f5f5f7]">
-      <div className="site-container">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.05em] text-[#707070] mb-10">
+    <section ref={ref} className="relative bg-black py-20 md:py-28 px-6 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)]" />
+      <div className="relative max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="text-white text-2xl md:text-3xl tracking-tight mb-10"
+          style={{
+            fontFamily: isRTL ? undefined : 'var(--font-heading), serif',
+            fontStyle: isRTL ? 'normal' : 'italic',
+            fontWeight: isRTL ? 700 : 400,
+          }}
+        >
           {t('title')}
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {categories.map((cat) => (
-            <Link
+        </motion.h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {categories.map((cat, i) => (
+            <motion.div
               key={cat.slug}
-              href={`${prefix}/blog/category/${cat.slug}`}
-              className="group block p-5 rounded-[28px] border border-[#e8e8ed] bg-white hover:border-[#0071e3]/30 hover:bg-[rgba(0,113,227,0.015)] transition-all duration-200"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.06 }}
             >
-              <h3 className="text-sm font-medium text-[#1d1d1f] group-hover:text-[#0066cc] transition-colors mb-2 leading-snug">
-                {cat.label}
-              </h3>
-              <p className="text-xs text-[#707070] leading-relaxed">{cat.description}</p>
-            </Link>
+              <Link
+                href={`${prefix}/blog/category/${cat.slug}`}
+                className="liquid-glass group block p-5 rounded-2xl h-full"
+              >
+                <h3
+                  className="text-sm font-medium text-white mb-2 leading-snug"
+                  style={{ lineHeight: isRTL ? 1.8 : 1.5 }}
+                >
+                  {cat.label}
+                </h3>
+                <p className="text-xs text-white/50 leading-relaxed">{cat.description}</p>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
