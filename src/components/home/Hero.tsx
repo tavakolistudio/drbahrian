@@ -140,7 +140,7 @@ export function Hero({ locale }: { locale: Locale }) {
             fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-heading), serif',
             fontStyle: isRTL ? 'normal' : 'italic',
             fontWeight: isRTL ? 700 : 400,
-            fontSize: isRTL ? 'clamp(2.6rem, 7vw, 5rem)' : 'clamp(3rem, 8vw, 6.5rem)',
+            fontSize: isRTL ? 'clamp(1.25rem, 3vw, 1.75rem)' : 'clamp(1.25rem, 3vw, 2rem)',
             lineHeight: 1.05,
             letterSpacing: isRTL ? '-0.02em' : '-0.02em',
           }}
