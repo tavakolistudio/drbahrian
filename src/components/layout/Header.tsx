@@ -15,7 +15,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active:
       href={href}
       className={cn(
         'text-sm transition-colors py-1 px-2',
-        active ? 'text-[#1d1d1f] font-medium' : 'text-[#707070] hover:text-[#1d1d1f]'
+        active ? 'text-[#1d1d1f] font-semibold' : 'text-[#444444] hover:text-[#1d1d1f]'
       )}
     >
       {label}
@@ -54,8 +54,8 @@ export function Header() {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         scrolled
-          ? 'bg-white/90 backdrop-blur-md border-b border-[#e8e8ed]'
-          : 'bg-transparent'
+          ? 'bg-white/95 backdrop-blur-md border-b border-[#e8e8ed] shadow-sm'
+          : 'bg-white/90 backdrop-blur-sm border-b border-[#e8e8ed]'
       )}
     >
       <div className="site-container">
@@ -102,8 +102,8 @@ export function Header() {
               className={cn(
                 'text-sm transition-colors py-1 px-2',
                 pathname.startsWith('/reserve')
-                  ? 'text-[#0071e3] font-medium'
-                  : 'text-[#707070] hover:text-[#0071e3]'
+                  ? 'text-[#0071e3] font-semibold'
+                  : 'text-[#444444] hover:text-[#0071e3]'
               )}
             >
               {t('reserve')}
