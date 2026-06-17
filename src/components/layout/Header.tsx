@@ -46,7 +46,7 @@ export function Header() {
 
   useEffect(() => { setOpen(false) }, [pathname])
 
-  const isHome = pathname === `${prefix}/` || pathname === '/'
+  const isHome = pathname === `${prefix}/` || pathname === prefix || pathname === '/'
   if (isHome) return null
 
   return (
