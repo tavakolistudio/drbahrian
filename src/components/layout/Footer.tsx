@@ -108,7 +108,7 @@ export function Footer({ locale }: { locale: Locale }) {
             {t('footer.rights')}
           </span>
           <a
-            href="https://tavakolistudio.com"
+            href="https://tavakolistudio.vercel.app/en"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/40 hover:text-white transition-colors normal-case tracking-normal"
