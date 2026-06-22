@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { LocaleEffects } from '@/components/LocaleEffects'
+import { BackgroundMusic } from '@/components/BackgroundMusic'
 import type { Locale } from '@/types'
 import { cn } from '@/lib/utils'
 
@@ -93,6 +94,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       >
         <NextIntlClientProvider messages={messages}>
           <LocaleEffects locale={locale as Locale} />
+          <BackgroundMusic />
           <Header />
           <main id="main-content">{children}</main>
           <Footer locale={locale as Locale} />

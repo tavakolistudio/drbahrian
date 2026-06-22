@@ -125,5 +125,9 @@
   "lang": {
     "switch": "فارسی",
     "current": "English"
+  },
+  "music": {
+    "play": "Play background music",
+    "pause": "Pause background music"
   }
 }
