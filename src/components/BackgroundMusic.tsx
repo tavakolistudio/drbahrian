@@ -9,6 +9,7 @@ const STORAGE_KEY = 'bgm-muted'
 export function BackgroundMusic() {
   const t = useTranslations('music')
   const audioRef = useRef<HTMLAudioElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const [audible, setAudible] = useState(false)
 
   useEffect(() => {
@@ -23,8 +24,13 @@ export function BackgroundMusic() {
 
     // Browsers always allow autoplay when muted; unmuting right away works
     // for returning visitors, and the listeners below catch everyone else
-    // on their very first interaction with the page.
-    const unmute = () => { audio.muted = false }
+    // on their very first interaction with the page. Skip clicks on the
+    // button itself — it handles its own toggle, and unmuting here first
+    // would make toggle() immediately re-mute on the very first click.
+    const unmute = (e: Event) => {
+      if (buttonRef.current?.contains(e.target as Node)) return
+      audio.muted = false
+    }
     window.addEventListener('pointerdown', unmute, { once: true })
     window.addEventListener('keydown', unmute, { once: true })
 
@@ -55,6 +61,7 @@ export function BackgroundMusic() {
         onVolumeChange={(e) => setAudible(!e.currentTarget.muted)}
       />
       <button
+        ref={buttonRef}
         type="button"
         onClick={toggle}
         aria-pressed={audible}
