@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, Send, Instagram } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
+import { BGM_ENTER_EVENT, BGM_STATE_EVENT } from '@/components/BackgroundMusic'
 import type { Locale } from '@/types'
 
 const HERO_VIDEO = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4'
@@ -85,6 +86,24 @@ export function Hero({ locale }: { locale: Locale }) {
   const tNav = useTranslations('nav')
   const prefix = `/${locale}`
   const isRTL = locale === 'fa'
+  const [entered, setEntered] = useState(false)
+
+  useEffect(() => {
+    const userMuted = localStorage.getItem('bgm-muted') === 'true'
+    const audio = document.querySelector('audio')
+    if (userMuted || (audio && !audio.muted)) setEntered(true)
+
+    const onState = (e: Event) => {
+      if ((e as CustomEvent<{ audible: boolean }>).detail.audible) setEntered(true)
+    }
+    window.addEventListener(BGM_STATE_EVENT, onState)
+    return () => window.removeEventListener(BGM_STATE_EVENT, onState)
+  }, [])
+
+  function enterSite() {
+    window.dispatchEvent(new Event(BGM_ENTER_EVENT))
+    setEntered(true)
+  }
 
   const navLinks = [
     { href: `${prefix}/`, label: tNav('home') },
@@ -101,6 +120,31 @@ export function Hero({ locale }: { locale: Locale }) {
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col bg-black">
       <FadingVideo src={HERO_VIDEO} className="absolute inset-0 w-full h-full object-cover object-bottom z-0" />
+
+      {/* Entry gate — guarantees a user gesture so background music can start audibly */}
+      {!entered && (
+        <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-black/50 px-6 text-center">
+          <Image src="/logo.png" alt="" width={56} height={56} className="object-contain" />
+          <h2
+            className="text-white"
+            style={{
+              fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-heading), serif',
+              fontStyle: isRTL ? 'normal' : 'italic',
+              fontWeight: isRTL ? 700 : 400,
+              fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
+            }}
+          >
+            {t('name')}
+          </h2>
+          <button
+            type="button"
+            onClick={enterSite}
+            className="liquid-glass-strong rounded-full px-8 py-3 text-white text-sm font-medium"
+          >
+            {t('enter')}
+          </button>
+        </div>
+      )}
 
       {/* Navbar */}
       <nav className="fixed top-4 inset-x-0 z-50 px-6">

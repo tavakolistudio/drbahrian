@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { Volume2, VolumeX } from 'lucide-react'
 
 const STORAGE_KEY = 'bgm-muted'
+export const BGM_ENTER_EVENT = 'bgm:enter'
+export const BGM_STATE_EVENT = 'bgm:state'
 
 export function BackgroundMusic() {
   const t = useTranslations('music')
@@ -32,12 +34,20 @@ export function BackgroundMusic() {
       audio.muted = false
       audio.play().catch(() => {})
     }
+    // The homepage hero's "enter" gate dispatches this once clicked —
+    // a guaranteed user gesture, so it always unmutes regardless of target.
+    const unmuteFromGate = () => {
+      audio.muted = false
+      audio.play().catch(() => {})
+    }
     window.addEventListener('pointerdown', unmute, { once: true })
     window.addEventListener('keydown', unmute, { once: true })
+    window.addEventListener(BGM_ENTER_EVENT, unmuteFromGate)
 
     return () => {
       window.removeEventListener('pointerdown', unmute)
       window.removeEventListener('keydown', unmute)
+      window.removeEventListener(BGM_ENTER_EVENT, unmuteFromGate)
     }
   }, [])
 
@@ -60,7 +70,11 @@ export function BackgroundMusic() {
         autoPlay
         muted
         preload="auto"
-        onVolumeChange={(e) => setAudible(!e.currentTarget.muted)}
+        onVolumeChange={(e) => {
+          const isAudible = !e.currentTarget.muted
+          setAudible(isAudible)
+          window.dispatchEvent(new CustomEvent(BGM_STATE_EVENT, { detail: { audible: isAudible } }))
+        }}
       />
       <button
         ref={buttonRef}
