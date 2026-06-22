@@ -4,7 +4,7 @@ import { useEffect, useRef, type CSSProperties } from 'react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowUpRight, Mail, Send, Instagram } from 'lucide-react'
+import { Mail, Send, Instagram } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import type { Locale } from '@/types'
 
@@ -125,9 +125,6 @@ export function Hero({ locale }: { locale: Locale }) {
             <Link href={`${prefix}/contact`} className="hidden sm:inline text-white/80 hover:text-white text-sm font-medium transition-colors">
               {tNav('contact')}
             </Link>
-            <Link href="/reserve" className="liquid-glass rounded-full px-5 py-2 text-white text-sm font-medium whitespace-nowrap">
-              {tNav('reserve')}
-            </Link>
           </div>
         </div>
       </nav>
@@ -160,13 +157,6 @@ export function Hero({ locale }: { locale: Locale }) {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <Link
-            href="/reserve"
-            className="liquid-glass-strong rounded-full px-6 py-3 text-white text-sm font-medium flex items-center gap-2"
-          >
-            {tNav('reserve')}
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
           <Link href={`${prefix}/blog`} className="liquid-glass rounded-full px-6 py-3 text-white text-sm font-medium">
             {t('ctaPrimary')}
           </Link>
