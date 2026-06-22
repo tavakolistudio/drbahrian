@@ -30,6 +30,7 @@ export function BackgroundMusic() {
     const unmute = (e: Event) => {
       if (buttonRef.current?.contains(e.target as Node)) return
       audio.muted = false
+      audio.play().catch(() => {})
     }
     window.addEventListener('pointerdown', unmute, { once: true })
     window.addEventListener('keydown', unmute, { once: true })
@@ -46,6 +47,7 @@ export function BackgroundMusic() {
 
     const next = !audio.muted
     audio.muted = next
+    if (!next) audio.play().catch(() => {})
     localStorage.setItem(STORAGE_KEY, String(next))
   }
 
