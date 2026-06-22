@@ -102,6 +102,10 @@ export function Hero({ locale }: { locale: Locale }) {
 
   function enterSite() {
     window.dispatchEvent(new Event(BGM_ENTER_EVENT))
+    // Some mobile browsers (notably iOS in Low Power Mode) block
+    // auto-playing video entirely, even muted, until a real user gesture
+    // calls play() directly — this click is that gesture.
+    document.querySelector('video')?.play().catch(() => {})
     setEntered(true)
   }
 
