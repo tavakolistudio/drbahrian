@@ -135,7 +135,9 @@ export function Hero({ locale }: { locale: Locale }) {
       )}
 
       {/* Navbar */}
-      <nav className="fixed top-4 inset-x-0 z-50 px-6">
+      <nav
+        className={`fixed top-4 inset-x-0 z-50 px-6 transition-opacity duration-700 ${entered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      >
         <div className="liquid-glass max-w-5xl mx-auto rounded-full px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link href={`${prefix}/`} className="flex items-center gap-2 flex-shrink-0">
             <Image src="/logo.png" alt={isRTL ? 'دکتر مریم بهریان' : 'Dr. Maryam Bahrian'} width={32} height={32} className="object-contain" />
@@ -162,7 +164,9 @@ export function Hero({ locale }: { locale: Locale }) {
       </nav>
 
       {/* Hero content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
+      <div
+        className={`relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center transition-opacity duration-700 ${entered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      >
         <h1
           className="text-white tracking-tight"
           style={{
@@ -200,7 +204,9 @@ export function Hero({ locale }: { locale: Locale }) {
       </div>
 
       {/* Social icons */}
-      <div className="relative z-10 flex justify-center gap-4 pb-12">
+      <div
+        className={`relative z-10 flex justify-center gap-4 pb-12 transition-opacity duration-700 ${entered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      >
         {socialLinks.map(({ href, icon: Icon, label }) => (
           <a
             key={label}
