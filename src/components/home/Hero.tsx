@@ -123,19 +123,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
       {/* Entry gate — guarantees a user gesture so background music can start audibly */}
       {!entered && (
-        <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-black/50 px-6 text-center">
-          <Image src="/logo.png" alt="" width={56} height={56} className="object-contain" />
-          <h2
-            className="text-white"
-            style={{
-              fontFamily: isRTL ? 'var(--font-vazir), Tahoma, sans-serif' : 'var(--font-heading), serif',
-              fontStyle: isRTL ? 'normal' : 'italic',
-              fontWeight: isRTL ? 700 : 400,
-              fontSize: 'clamp(1.1rem, 3vw, 1.5rem)',
-            }}
-          >
-            {t('name')}
-          </h2>
+        <div className="absolute inset-0 z-[100] flex items-center justify-center px-6">
           <button
             type="button"
             onClick={enterSite}
