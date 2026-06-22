@@ -19,16 +19,21 @@ export function BackgroundMusic() {
     if (!audio) return
 
     audio.volume = 0.35
+    // Always start muted, even with no stored preference — setting
+    // audio.muted = false here without a real gesture is unreliable (some
+    // browsers silently ignore it) and was racing with the homepage gate's
+    // "is it already unmuted" check, making the gate never show. Real
+    // unmuting only ever happens through an actual user gesture below.
+    audio.muted = true
     const userMuted = localStorage.getItem(STORAGE_KEY) === 'true'
-    audio.muted = userMuted
 
     if (userMuted) return
 
-    // Browsers always allow autoplay when muted; unmuting right away works
-    // for returning visitors, and the listeners below catch everyone else
-    // on their very first interaction with the page. Skip clicks on the
-    // button itself — it handles its own toggle, and unmuting here first
-    // would make toggle() immediately re-mute on the very first click.
+    // Unmute on the visitor's first interaction anywhere on the page (the
+    // homepage's gate provides a more deliberate one; this covers every
+    // other page). Skip clicks on the button itself — it handles its own
+    // toggle, and unmuting here first would make toggle() immediately
+    // re-mute on the very first click.
     const unmute = (e: Event) => {
       if (buttonRef.current?.contains(e.target as Node)) return
       audio.muted = false
