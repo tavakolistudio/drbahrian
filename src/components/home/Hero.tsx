@@ -87,6 +87,7 @@ export function Hero({ locale }: { locale: Locale }) {
   const prefix = `/${locale}`
   const isRTL = locale === 'fa'
   const [entered, setEntered] = useState(false)
+  const [reservationEnabled, setReservationEnabled] = useState(true)
 
   useEffect(() => {
     const userMuted = localStorage.getItem('bgm-muted') === 'true'
@@ -98,6 +99,13 @@ export function Hero({ locale }: { locale: Locale }) {
     }
     window.addEventListener(BGM_STATE_EVENT, onState)
     return () => window.removeEventListener(BGM_STATE_EVENT, onState)
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((d) => setReservationEnabled(d.reservationEnabled !== false))
+      .catch(() => {})
   }, [])
 
   function enterSite() {
@@ -197,6 +205,11 @@ export function Hero({ locale }: { locale: Locale }) {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+          {reservationEnabled && (
+            <Link href="/reserve" className="liquid-glass-strong rounded-full px-6 py-3 text-white text-sm font-medium">
+              {tNav('reserve')}
+            </Link>
+          )}
           <Link href={`${prefix}/blog`} className="liquid-glass rounded-full px-6 py-3 text-white text-sm font-medium">
             {t('ctaPrimary')}
           </Link>
