@@ -9,6 +9,7 @@ interface Settings {
   defaultBreakMinutes: number
   pendingExpirationHours: number
   contactPriority: string
+  reservationEnabled: boolean
 }
 
 export default function AdminSettingsPage() {
@@ -55,6 +56,22 @@ export default function AdminSettingsPage() {
         <p className="text-sm text-[#6b6b6b] mt-1">پیکربندی سیستم رزرو</p>
       </div>
       <form onSubmit={handleSave} className="space-y-6">
+        <div className="bg-[#F9F8F5] rounded-xl border border-[#E8E5DF] p-6">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-sm font-semibold text-[#1a1a1a]">رزرو نوبت آنلاین</h2>
+              <p className="text-xs text-[#6b6b6b] mt-1 max-w-sm">
+                با خاموش‌کردن این گزینه، دکمه و لینک «رزرو نوبت» از سایت مخفی می‌شود و امکان ثبت درخواست نوبت جدید بسته خواهد شد.
+              </p>
+            </div>
+            <ToggleSwitch
+              checked={settings.reservationEnabled}
+              onChange={(checked) => setSettings({ ...settings, reservationEnabled: checked })}
+              label="رزرو نوبت آنلاین"
+            />
+          </div>
+        </div>
+
         <div className="bg-[#F9F8F5] rounded-xl border border-[#E8E5DF] p-6 space-y-5">
           <h2 className="text-sm font-semibold text-[#1a1a1a]">تنظیمات وقت‌دهی</h2>
 
@@ -135,6 +152,33 @@ export default function AdminSettingsPage() {
         }
       `}</style>
     </div>
+  )
+}
+
+function ToggleSwitch({
+  checked,
+  onChange,
+  label,
+}: {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  label: string
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      onClick={() => onChange(!checked)}
+      className="relative h-7 w-12 flex-shrink-0 rounded-full transition-colors"
+      style={{ backgroundColor: checked ? '#2C4A3E' : '#D8D4CC' }}
+    >
+      <span
+        className="absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-all"
+        style={{ insetInlineStart: checked ? '1.5rem' : '0.25rem' }}
+      />
+    </button>
   )
 }
 

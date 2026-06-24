@@ -32,6 +32,14 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    const settings = await prisma.settings.findFirst({ select: { reservationEnabled: true } })
+    if (settings?.reservationEnabled === false) {
+      return NextResponse.json(
+        { error: 'رزرو نوبت موقتاً غیرفعال است.' },
+        { status: 403 }
+      )
+    }
+
     const body = await req.json()
     const parsed = ReservationSchema.safeParse(body)
 

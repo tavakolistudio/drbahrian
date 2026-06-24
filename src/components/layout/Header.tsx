@@ -29,6 +29,7 @@ export function Header() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [reservationEnabled, setReservationEnabled] = useState(true)
 
   const prefix = `/${locale}`
 
@@ -42,6 +43,13 @@ export function Header() {
     const handler = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((d) => setReservationEnabled(d.reservationEnabled !== false))
+      .catch(() => {})
   }, [])
 
   useEffect(() => { setOpen(false) }, [pathname])
@@ -97,17 +105,19 @@ export function Header() {
                 }
               />
             ))}
-            <Link
-              href="/reserve"
-              className={cn(
-                'text-sm transition-colors py-1 px-2',
-                pathname.startsWith('/reserve')
-                  ? 'text-[#0071e3] font-semibold'
-                  : 'text-[#444444] hover:text-[#0071e3]'
-              )}
-            >
-              {t('reserve')}
-            </Link>
+            {reservationEnabled && (
+              <Link
+                href="/reserve"
+                className={cn(
+                  'text-sm transition-colors py-1 px-2',
+                  pathname.startsWith('/reserve')
+                    ? 'text-[#0071e3] font-semibold'
+                    : 'text-[#444444] hover:text-[#0071e3]'
+                )}
+              >
+                {t('reserve')}
+              </Link>
+            )}
           </nav>
 
           {/* Right: language switcher + CTA */}
@@ -136,7 +146,11 @@ export function Header() {
       {open && (
         <div className="md:hidden border-t border-[#e8e8ed] bg-white/95 backdrop-blur-md">
           <nav className="site-container py-4 flex flex-col gap-1">
-            {[...links, { href: '/reserve', label: t('reserve') }, { href: `${prefix}/contact`, label: t('contact') }].map((l) => (
+            {[
+              ...links,
+              ...(reservationEnabled ? [{ href: '/reserve', label: t('reserve') }] : []),
+              { href: `${prefix}/contact`, label: t('contact') },
+            ].map((l) => (
               <Link
                 key={l.href}
                 href={l.href}

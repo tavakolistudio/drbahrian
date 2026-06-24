@@ -172,6 +172,7 @@ model Settings {
   defaultBreakMinutes        Int      @default(10)
   pendingExpirationHours     Int      @default(24)
   contactPriority            String   @default("WHATSAPP,TELEGRAM,BALE")
+  reservationEnabled         Boolean  @default(true)
   createdAt                  DateTime @default(now())
   updatedAt                  DateTime @updatedAt
 }

@@ -67,4 +67,5 @@ export const SettingsSchema = z.object({
   defaultSlotDurationMinutes: z.number().int().min(10).max(180),
   defaultBreakMinutes: z.number().int().min(0).max(60),
   pendingExpirationHours: z.number().int().min(1).max(168),
+  reservationEnabled: z.boolean(),
 })
