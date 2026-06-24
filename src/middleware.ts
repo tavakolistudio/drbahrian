@@ -6,9 +6,8 @@ import { routing } from '@/i18n/routing'
 const intlMiddleware = createIntlMiddleware(routing)
 
 function getSecret() {
-  return new TextEncoder().encode(
-    process.env.ADMIN_JWT_SECRET || 'fallback_secret_change_me'
-  )
+  const secret = process.env.ADMIN_JWT_SECRET
+  return secret ? new TextEncoder().encode(secret) : null
 }
 
 export default async function middleware(request: NextRequest) {
@@ -21,13 +20,15 @@ export default async function middleware(request: NextRequest) {
     }
 
     const token = request.cookies.get('admin-token')?.value
+    const secret = getSecret()
 
-    if (!token) {
+    // Fail closed: with no configured secret, no token can be trusted.
+    if (!token || !secret) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
 
     try {
-      await jwtVerify(token, getSecret())
+      await jwtVerify(token, secret)
       return NextResponse.next()
     } catch {
       const response = NextResponse.redirect(new URL('/admin/login', request.url))

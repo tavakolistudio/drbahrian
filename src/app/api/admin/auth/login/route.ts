@@ -4,8 +4,35 @@ import { prisma } from '@/lib/prisma'
 import { signToken } from '@/lib/auth'
 import { AdminLoginSchema } from '@/lib/validation'
 
+// Simple rate limiting: track IPs in memory (resets on cold start — good enough for MVP)
+const rateLimit = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT_MAX = 5
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimit.get(ip)
+
+  if (!entry || entry.resetAt < now) {
+    rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return true
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) return false
+  entry.count++
+  return true
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0] ?? '0.0.0.0'
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: 'تعداد تلاش‌های ورود بیش از حد مجاز است. لطفاً ۱۵ دقیقه صبر کنید.' },
+        { status: 429 }
+      )
+    }
+
     const body = await req.json()
     const parsed = AdminLoginSchema.safeParse(body)
 

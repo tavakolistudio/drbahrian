@@ -5,11 +5,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx'],
-  images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: '**' },
-    ],
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
